@@ -8,13 +8,15 @@
   default: true;
   --color-primary: #2f80ed;
   --color-secondary: #56ccf2;
-  --color-base-200: #f3f3f3;
-  --color-base-300: #e7e7e7;
+  --color-base-200: #091f30;
+  --color-base-300: #FFEE58;
   --color-accent: #706f6f;
 }
 
 a.active {
-  @apply bg-base-300;
+  @apply 
+  bg-base-300
+  text-black
 }
 
 * {
