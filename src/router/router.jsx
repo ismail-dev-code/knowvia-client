@@ -8,6 +8,7 @@ import AboutUs from "../pages/Shared/AboutUs";
 import Error from "../pages/Shared/Error";
 import SignIn from "../signIn/SignIn";
 import Register from "../pages/register/Register";
+import PrivateRoute from "../routes/PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,11 +24,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/myArticles",
-        element: <MyArticles></MyArticles>,
+        element: (
+          <PrivateRoute>
+            <MyArticles />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/postArticle",
-        element: <PostArticle></PostArticle>,
+        element: (
+          <PrivateRoute>
+            <PostArticle />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/aboutUs",

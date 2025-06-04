@@ -7,6 +7,7 @@ import SocialLogIn from "../pages/Shared/SocialLogin";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../context/authContext/AuthContext";
+import { FaRegLightbulb } from "react-icons/fa";
 
 const SignIn = () => {
   const { signIn, resetPassword } = useContext(AuthContext);
@@ -88,7 +89,14 @@ const SignIn = () => {
           transition={{ duration: 3, ease: "easeOut" }}
         >
           <div className="card-body">
-            <h1 className="text-2xl font-bold text-center">
+            <Link
+          to={"/"}
+          className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
+        >
+          <FaRegLightbulb className="text-secondary hidden md:block" />
+          Knowvia
+        </Link>
+            <h1 className="text-xl mt-0 font-bold text-center">
               Access Your Account
             </h1>
             <form onSubmit={handleSignIn}>
@@ -102,7 +110,7 @@ const SignIn = () => {
                   required
                 />
 
-                <label className="label mt-4">Password</label>
+                <label className="label mt-2">Password</label>
                 <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -119,7 +127,7 @@ const SignIn = () => {
                 </span>
               </div>
 
-                <div className="flex justify-between items-center mt-2">
+                <div className="flex justify-between items-center mt-0.5">
                   <button
                     type="button"
                     className="link link-hover text-sm text-blue-500"

@@ -8,6 +8,7 @@ import SocialLogIn from "../Shared/SocialLogin";
 import { motion as Motion } from "framer-motion";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import { updateProfile } from "firebase/auth";
+import { FaRegLightbulb } from "react-icons/fa";
 const Register = () => {
   const navigate = useNavigate();
   const { createUser } = useContext(AuthContext);
@@ -99,7 +100,14 @@ const Register = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 2 }}
         >
-          <h1 className="text-2xl font-bold mb-3 text-center">
+           <Link
+                    to={"/"}
+                    className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
+                  >
+                    <FaRegLightbulb className="text-secondary hidden md:block" />
+                    Knowvia
+                  </Link>
+          <h1 className="text-xl font-bold mb-3 text-center">
             Create an Account
           </h1>
           <form onSubmit={handleRegister} className="space-y-4">
