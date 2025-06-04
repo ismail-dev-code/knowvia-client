@@ -3,10 +3,10 @@ import { FaLinkedin, FaRegLightbulb } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const usefulLinks = [
-  { label: "About Us", href: "#" },
-  { label: "Post Knowledge", href: "#" },
-  { label: "Contact Us", href: "#" },
-  { label: "Terms & Conditions", href: "#" },
+  { label: "About Knowvia", href: "#" },
+  { label: "Who We Are", href: "#" },
+  { label: "Our Story", href: "#" },
+  { label: "About This Platform", href: "#" },
 ];
 
 const contributorLinks = [
@@ -64,17 +64,18 @@ const Footer = () => {
               to={"/"}
               className="text-2xl flex items-center gap-1.5 font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
             >
-              <FaRegLightbulb className="text-base-300" />
+              <FaRegLightbulb className="text-secondary" />
               Knowvia
             </Link>
-            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
-              A knowledge-sharing hub for students to exchange ideas, insights,
-              and educational content.
+            <p className="mt-1 text-sm dark:text-gray-400">
+              A knowledge-sharing platform where individuals can publish
+              articles, exchange insights, and share educational content across
+              diverse topics.
             </p>
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2">Useful Links</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">About Us</p>
             <ul className="space-y-1 text-sm">
               {usefulLinks.map(({ label, href }) => (
                 <li key={label}>
@@ -90,7 +91,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2">Contributors</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">Terms & Conditions</p>
             <ul className="space-y-1 text-sm">
               {contributorLinks.map(({ label, href }) => (
                 <li key={label}>
@@ -106,7 +107,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2">Contact Us</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">Contact Us</p>
             <ul className="space-y-1 text-sm">
               <li>
                 Email:{" "}

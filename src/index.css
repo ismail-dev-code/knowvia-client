@@ -2,6 +2,10 @@
 
 @import "tailwindcss";
 @plugin "daisyui";
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
 
 @plugin "daisyui/theme" {
   name: "light";
@@ -10,13 +14,13 @@
   --color-secondary: #56ccf2;
   --color-base-200: #091f30;
   --color-base-300: #FFEE58;
-  --color-accent: #706f6f;
+  --color-accent: #757575;
 }
 
 a.active {
   @apply 
   bg-base-300
-  text-black
+  text-accent
 }
 
 * {

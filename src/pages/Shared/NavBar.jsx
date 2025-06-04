@@ -1,9 +1,10 @@
 import { Link, NavLink } from "react-router";
-import { IoHomeOutline } from "react-icons/io5";
+import { IoHomeOutline, IoToggleSharp } from "react-icons/io5";
 import { FaRegLightbulb } from "react-icons/fa6";
 import { GrArticle } from "react-icons/gr";
 import { PiArticleMediumLight, PiArticleNyTimesLight } from "react-icons/pi";
 import { GiGiftOfKnowledge } from "react-icons/gi";
+import { useEffect, useState } from "react";
 
 const NavBar = () => {
   const links = (
@@ -21,7 +22,7 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/MyArticles" className="text-secondary mr-4">
+        <NavLink to="/myArticles" className="text-secondary mr-4">
           <PiArticleMediumLight />
           My Articles
         </NavLink>
@@ -40,6 +41,25 @@ const NavBar = () => {
       </li>
     </>
   );
+  const [isDark, setIsDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    if (isDark) {
+      root.classList.add("dark");
+      root.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDark]);
+
+  const toggleTheme = () => setIsDark(!isDark);
 
   return (
     <div className="navbar px-4 md:px-12 sticky top-0 z-50 bg-base-200">
@@ -76,7 +96,7 @@ const NavBar = () => {
           to={"/"}
           className="text-2xl flex items-center gap-1.5 font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
         >
-          <FaRegLightbulb className="text-base-300" />
+          <FaRegLightbulb className="text-secondary hidden md:block" />
           Knowvia
         </Link>
       </div>
@@ -98,6 +118,9 @@ const NavBar = () => {
         >
           Register
         </Link>
+        <button onClick={toggleTheme}>
+          <input type="checkbox" className="toggle text-secondary theme-controller" />
+        </button>
       </div>
     </div>
   );
