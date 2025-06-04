@@ -1,12 +1,18 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { IoHomeOutline, IoToggleSharp } from "react-icons/io5";
 import { FaRegLightbulb } from "react-icons/fa6";
 import { GrArticle } from "react-icons/gr";
 import { PiArticleMediumLight, PiArticleNyTimesLight } from "react-icons/pi";
 import { GiGiftOfKnowledge } from "react-icons/gi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../context/authContext/AuthContext";
+import Swal from "sweetalert2";
+import { FaRegUser } from "react-icons/fa";
 
 const NavBar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const links = (
     <>
       <li>
@@ -21,18 +27,24 @@ const NavBar = () => {
           All Articles
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/myArticles" className="text-secondary mr-4">
-          <PiArticleMediumLight />
-          My Articles
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/postArticle" className="text-secondary mr-4">
-          <PiArticleNyTimesLight />
-          Post Article
-        </NavLink>
-      </li>
+      {user && (
+        <>
+          {" "}
+          <li>
+            <NavLink to="/myArticles" className="text-secondary mr-4">
+              <PiArticleMediumLight />
+              My Articles
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/postArticle" className="text-secondary mr-4">
+              <PiArticleNyTimesLight />
+              Post Article
+            </NavLink>
+          </li>
+        </>
+      )}
+
       <li>
         <NavLink to="/aboutUs" className="text-secondary mr-4">
           <GiGiftOfKnowledge />
@@ -60,6 +72,28 @@ const NavBar = () => {
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(!isDark);
+  const handleLogout = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, log out",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await logOut();
+        Swal.fire("Logged out!", "You have been signed out.", "success");
+        navigate("/");
+      } catch (error) {
+        console.error("Logout failed", error);
+        Swal.fire("Error", "Something went wrong during logout.", "error");
+      }
+    }
+  };
 
   return (
     <div className="navbar px-4 md:px-12 sticky top-0 z-50 bg-base-200">
@@ -105,21 +139,67 @@ const NavBar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
 
-      <div className="navbar-end space-x-2">
-        <Link
-          to="/signIn"
-          className="text-sm lg:block hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-3 py-1 rounded transition"
-        >
-          SignIn
-        </Link>
-        <Link
-          to="/register"
-          className="text-sm text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-3 py-1 rounded transition"
-        >
-          Register
-        </Link>
+      <div className="navbar-end space-x-2 text-secondary">
+        {user ? (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-10 rounded-full">
+                {user?.photoURL ? (
+                  <img
+                    src={user.photoURL}
+                    alt="User Avatar"
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                ) : (
+                  <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+                    <FaRegUser size={25} className="text-xl text-secondary" />
+                  </div>
+                )}
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/myArticles" className="justify-between">
+                  My Articles
+                </Link>
+              </li>
+              <li>
+                <Link to="/postArticle">Post Article</Link>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <>
+            <Link
+              to="/signIn"
+              className="text-sm lg:block hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-3 py-1 rounded transition"
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/register"
+              className="text-sm text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-3 py-1 rounded transition"
+            >
+              Register
+            </Link>
+          </>
+        )}
+
         <button onClick={toggleTheme}>
-          <input type="checkbox" className="toggle text-secondary theme-controller" />
+          <input
+            type="checkbox"
+            className="toggle text-secondary theme-controller"
+          />
         </button>
       </div>
     </div>
