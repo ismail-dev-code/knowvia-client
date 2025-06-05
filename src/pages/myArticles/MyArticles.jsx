@@ -21,7 +21,7 @@ const MyArticles = () => {
   const fetchArticles = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5173/articles"
+        "http://localhost:3000/articles"
       );
       const allArticles = response.data;
       const userArticles = allArticles.filter(
@@ -38,7 +38,7 @@ const MyArticles = () => {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:5173/articles/${deleteId}`
+        `http://localhost:3000/articles/${deleteId}`
       );
       setMyArticles((prev) =>
         prev.filter((article) => article._id !== deleteId)
@@ -55,7 +55,7 @@ const MyArticles = () => {
     try {
       const { _id, ...updatedArticle } = selectedArticle;
       await axios.patch(
-        `http://localhost:5173/articles/${_id}`,
+        `http://localhost:3000/articles/${_id}`,
         updatedArticle
       );
       fetchArticles();

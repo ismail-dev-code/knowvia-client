@@ -26,14 +26,14 @@ const SingleArticle = () => {
 
   const fetchComments = () => {
     axios
-      .get(`http://localhost:5173/comments/${id}`)
+      .get(`http://localhost:3000/comments/${id}`)
       .then((res) => setComments(res.data))
       .catch(console.error);
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5173/articles/${id}`)
+      .get(`http://localhost:3000/articles/${id}`)
       .then((res) => {
         setArticle(res.data);
         setLoading(false);
@@ -52,7 +52,7 @@ const SingleArticle = () => {
     }
 
     axios
-      .patch(`http://localhost:5173/like/${id}`, {
+      .patch(`http://localhost:3000/like/${id}`, {
         email: user?.email,
       })
       .then((res) => {

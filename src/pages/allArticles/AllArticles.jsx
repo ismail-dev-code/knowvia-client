@@ -11,7 +11,7 @@ const AllArticles = () => {
   const {user} = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get('http://localhost:5173/articles')
+    axios.get('http://localhost:3000/articles')
       .then(res => {
         setArticles(res.data);
         setLoading(false);

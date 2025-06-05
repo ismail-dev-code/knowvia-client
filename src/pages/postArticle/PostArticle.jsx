@@ -31,7 +31,7 @@ const PostArticle = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5173/articles",
+        "http://localhost:3000/articles",
         article
       );
 
