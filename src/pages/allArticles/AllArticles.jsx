@@ -6,11 +6,12 @@ import Loading from '../Shared/Loading';
 
 const AllArticles = () => {
   const [articles, setArticles] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const {user} = useContext(AuthContext);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/articles')
+    axios.get('http://localhost:5173/articles')
       .then(res => {
         setArticles(res.data);
         setLoading(false);
@@ -20,7 +21,7 @@ const AllArticles = () => {
         setLoading(false);
       });
   }, []);
-
+  console.log(articles);
   if (loading) return <div className="text-center"><Loading/></div>;
 
   return (
@@ -49,7 +50,7 @@ const AllArticles = () => {
               </p>
             
               <Link to={`/articles/${article._id}`}>
-                <button className="bg-base-300 cursor-pointer px-4 py-2 rounded hover:bg-blue-700 hover:text-white">
+                <button className="btn btn-secondary text-base-100">
                   Read More
                 </button>
               </Link>

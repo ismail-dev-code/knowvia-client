@@ -27,7 +27,7 @@ const PostComment = ({ articleId, onCommentPosted }) => {
 
     try {
       setPosting(true);
-      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, newComment);
+      await axios.post(`http://localhost:5173/articles/${articleId}/comments`, newComment);
       setComment("");
       onCommentPosted(); 
     } catch (error) {

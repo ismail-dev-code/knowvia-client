@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import Loading from "../Shared/Loading";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
+import { Link } from "react-router";
 const MyArticles = () => {
   const { user } = useContext(AuthContext);
   const [myArticles, setMyArticles] = useState([]);
@@ -19,7 +20,9 @@ const MyArticles = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/articles");
+      const response = await axios.get(
+        "http://localhost:5173/articles"
+      );
       const allArticles = response.data;
       const userArticles = allArticles.filter(
         (article) => article.userEmail === user?.email
@@ -34,7 +37,9 @@ const MyArticles = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/articles/${deleteId}`);
+      await axios.delete(
+        `http://localhost:5173/articles/${deleteId}`
+      );
       setMyArticles((prev) =>
         prev.filter((article) => article._id !== deleteId)
       );
@@ -50,7 +55,7 @@ const MyArticles = () => {
     try {
       const { _id, ...updatedArticle } = selectedArticle;
       await axios.patch(
-        `http://localhost:3000/articles/${_id}`,
+        `http://localhost:5173/articles/${_id}`,
         updatedArticle
       );
       fetchArticles();
@@ -82,7 +87,14 @@ const MyArticles = () => {
     <div className="max-w-6xl mx-auto p-4">
       <h2 className="text-2xl font-bold mb-6">My Articles</h2>
       {myArticles.length === 0 ? (
-        <p>You haven't posted any articles yet.</p>
+        <>
+          <div className="text-center my-24 space-y-4">
+            <p>You haven't posted any articles yet.</p>
+            <Link to={"/postArticle"} className="btn btn-secondary">
+              Post an Article
+            </Link>
+          </div>
+        </>
       ) : (
         <table className="min-w-full table-auto border border-gray-200">
           <thead className="text-sm">
@@ -119,7 +131,7 @@ const MyArticles = () => {
                     data-tooltip-place="top"
                     data-tooltip-class-name="z-50"
                   >
-                    <FaEdit className="cursor-pointer" size={25} />
+                    <FaEdit className="cursor-pointer" size={20} />
                   </button>
                   <button
                     onClick={() => openDeleteModal(article._id)}
@@ -129,7 +141,7 @@ const MyArticles = () => {
                     data-tooltip-place="top"
                     data-tooltip-class-name="z-50"
                   >
-                    <MdDelete className="cursor-pointer" size={25} />
+                    <MdDelete className="cursor-pointer" size={20} />
                   </button>
                 </td>
               </tr>

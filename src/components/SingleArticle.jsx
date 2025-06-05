@@ -5,7 +5,7 @@ import { AuthContext } from "../context/authContext/AuthContext";
 import Loading from "../pages/Shared/Loading";
 import PostComment from "./PostComment";
 import { toast } from "react-toastify";
-
+import { AiOutlineLike } from "react-icons/ai";
 const SingleArticle = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
@@ -26,14 +26,14 @@ const SingleArticle = () => {
 
   const fetchComments = () => {
     axios
-      .get(`http://localhost:3000/comments/${id}`)
+      .get(`http://localhost:5173/comments/${id}`)
       .then((res) => setComments(res.data))
       .catch(console.error);
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/articles/${id}`)
+      .get(`http://localhost:5173/articles/${id}`)
       .then((res) => {
         setArticle(res.data);
         setLoading(false);
@@ -52,7 +52,7 @@ const SingleArticle = () => {
     }
 
     axios
-      .patch(`http://localhost:3000/like/${id}`, {
+      .patch(`http://localhost:5173/like/${id}`, {
         email: user?.email,
       })
       .then((res) => {
@@ -97,7 +97,7 @@ const SingleArticle = () => {
         {article.category} | {article.date}
       </p>
 
-      <div className="text-gray-800 leading-relaxed mb-4 whitespace-pre-line">
+      <div className="leading-relaxed mb-4 whitespace-pre-line">
         {article.content}
       </div>
 
@@ -108,7 +108,7 @@ const SingleArticle = () => {
       <div className="mb-4">
         <p>Likes: {likeCount}</p>
         <button onClick={handleLike} className="btn btn-secondary">
-          👍 {liked ? "Liked" : "Like"}
+          <AiOutlineLike size={22} /> {liked ? "Liked" : "Like"}
         </button>
       </div>
 
