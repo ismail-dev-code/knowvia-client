@@ -68,9 +68,7 @@ const Footer = () => {
               Knowvia
             </Link>
             <p className="mt-1 text-sm dark:text-gray-400">
-              A knowledge-sharing platform where individuals can publish
-              articles, exchange insights, and share educational content across
-              diverse topics.
+              A knowledge-sharing platform where students and individuals can publish articles, exchange insights, and share content across diverse topics.
             </p>
           </div>
 

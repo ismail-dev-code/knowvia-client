@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../context/authContext/AuthContext";
 import Loading from "../pages/Shared/Loading";
 import PostComment from "./PostComment";
+import { toast } from "react-toastify";
 
 const SingleArticle = () => {
   const { id } = useParams();
@@ -11,9 +12,9 @@ const SingleArticle = () => {
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+ 
 
   useEffect(() => {
     if (article) {
@@ -24,11 +25,11 @@ const SingleArticle = () => {
   }, [article, user]);
 
   const fetchComments = () => {
-  axios
-    .get(`http://localhost:3000/comments/${id}`)
-    .then((res) => setComments(res.data))
-    .catch(console.error);
-};
+    axios
+      .get(`http://localhost:3000/comments/${id}`)
+      .then((res) => setComments(res.data))
+      .catch(console.error);
+  };
 
   useEffect(() => {
     axios
@@ -41,13 +42,13 @@ const SingleArticle = () => {
         console.error("Error fetching article:", err);
         setLoading(false);
       });
-      fetchComments();
+    fetchComments();
   }, [id]);
 
   // Handle like/dislike
   const handleLike = () => {
     if (user?.email === article.email) {
-      return alert("You can't like your own article.");
+      return toast.error("Please log in first");
     }
 
     axios
@@ -63,9 +64,6 @@ const SingleArticle = () => {
         console.error("Error updating like:", err);
       });
   };
-
-  
-
 
   if (loading)
     return (

@@ -1,15 +1,22 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../context/authContext/AuthContext";
+import { toast } from "react-toastify";
+
 
 const PostComment = ({ articleId, onCommentPosted }) => {
   const { user } = useContext(AuthContext);
   const [comment, setComment] = useState("");
   const [posting, setPosting] = useState(false);
 
+ 
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!comment.trim()) return;
+    if (!comment.trim() || !user) return toast.error("Please log in first");
+
 
     const newComment = {
       user_id: user?.uid, 
