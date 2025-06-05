@@ -9,6 +9,7 @@ import Error from "../pages/Shared/Error";
 import SignIn from "../signIn/SignIn";
 import Register from "../pages/register/Register";
 import PrivateRoute from "../routes/PrivateRoute";
+import SingleArticle from "../components/SingleArticle";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             <PostArticle />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/articles/:id",
+        element: <SingleArticle />,
       },
       {
         path: "/aboutUs",
