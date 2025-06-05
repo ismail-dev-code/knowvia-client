@@ -37,7 +37,7 @@ const AllArticles = () => {
                 alt={article.title}
                 className="w-full h-40 object-cover rounded mb-3"
               />
-              <h3 className="text-xl font-semibold mb-1">{article.title}</h3>
+              <h3 className="text-xl font-semibold mb-1 capitalize">{article.title}</h3>
               <p className="text-sm text-gray-600 mb-1">
                 By <span className="font-medium">{article?.username || user?.displayName}</span>
               </p>
