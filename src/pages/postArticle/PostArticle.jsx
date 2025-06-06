@@ -11,6 +11,8 @@ const PostArticle = () => {
     category: "",
     tags: "",
     thumbnail: "",
+    userPhoto: "",
+    userEmail: "",
     date: new Date().toISOString().split("T")[0],
   });
 
@@ -27,6 +29,7 @@ const PostArticle = () => {
       tags: formData.tags.split(",").map((tag) => tag.trim()),
       userEmail: user.email,
       username: user.displayName,
+      userPhoto: user.photoURL,
     };
 
     try {
@@ -95,12 +98,14 @@ const PostArticle = () => {
           className="w-full border p-2 rounded"
         >
           <option value="">Select Category</option>
-          <option value="Tech">Tech</option>
-          <option value="Education">Education</option>
-          <option value="Health">Health</option>
-          <option value="Lifestyle">Lifestyle</option>
-          <option value="Business">Business</option>
-          <option value="Environment">Environment</option>
+          <option value="tech">Tech</option>
+          <option value="education">Education</option>
+          <option value="health">Health</option>
+          <option value="lifestyle">Lifestyle</option>
+          <option value="business">Business</option>
+          <option value="environment">Environment</option>
+          <option value="science">Science</option>
+          <option value="arts">Arts</option>
         </select>
         <input
           type="text"
@@ -118,6 +123,21 @@ const PostArticle = () => {
           onChange={handleChange}
           required
           className="w-full border p-2 rounded"
+        />
+
+        <input
+          name="username"
+          value={user?.displayName}
+          onChange={handleChange}
+          disabled
+          className="w-full border p-2 rounded"
+        />
+        <input
+          name="userEmail"
+          value={user?.email}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+          disabled
         />
         <input
           type="date"

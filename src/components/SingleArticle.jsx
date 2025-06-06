@@ -88,7 +88,7 @@ const SingleArticle = () => {
         </span>
         {user?.photoURL && (
           <img
-            src={article.userPhoto || user?.photoURL}
+            src={article.userPhoto}
             alt={article.username}
             className="inline-block w-6 h-6 rounded-full ml-2"
           />
@@ -123,7 +123,7 @@ const SingleArticle = () => {
         <div className="space-y-4">
           {comments?.length > 0 ? (
             comments?.map((comment) => (
-              <div key={comment._id} className="border rounded p-3">
+              <div key={comment._id} className="shadow rounded p-3">
                 <div className="flex items-center mb-2">
                   <img
                     src={comment.user_photo}
@@ -134,7 +134,7 @@ const SingleArticle = () => {
                 </div>
                 <p>{comment.comment}</p>
                 <small className="text-gray-500">
-                  {new Date(comment.created_at).toLocaleString()}
+                Date: {new Date(comment.created_at).toLocaleString()}
                 </small>
               </div>
             ))

@@ -69,7 +69,7 @@ const Banner = () => {
             </p>
             <button
               onClick={() => navigate("/allArticles")}
-              className="bg-secondary hover:bg-primary cursor-pointer px-4 py-1.5 rounded-full font-semibold transition"
+              className="bg-secondary hover:bg-primary cursor-pointer px-4 py-2 rounded-full font-semibold transition"
             >
               Explore Articles
             </button>
