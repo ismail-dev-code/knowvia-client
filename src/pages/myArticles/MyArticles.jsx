@@ -5,6 +5,7 @@ import Loading from "../Shared/Loading";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
 const MyArticles = () => {
   const { user } = useContext(AuthContext);
   const [myArticles, setMyArticles] = useState([]);
@@ -20,9 +21,7 @@ const MyArticles = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/articles"
-      );
+      const response = await axios.get("http://localhost:3000/articles");
       const allArticles = response.data;
       const userArticles = allArticles.filter(
         (article) => article.userEmail === user?.email
@@ -37,9 +36,7 @@ const MyArticles = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(
-        `http://localhost:3000/articles/${deleteId}`
-      );
+      await axios.delete(`http://localhost:3000/articles/${deleteId}`);
       setMyArticles((prev) =>
         prev.filter((article) => article._id !== deleteId)
       );
@@ -54,13 +51,28 @@ const MyArticles = () => {
     e.preventDefault();
     try {
       const { _id, ...updatedArticle } = selectedArticle;
+
       await axios.patch(
         `http://localhost:3000/articles/${_id}`,
         updatedArticle
       );
+
       fetchArticles();
+
+      Swal.fire({
+        icon: "success",
+        title: "Article Updated",
+        text: "The article was updated successfully!",
+        confirmButtonColor: "#16a34a",
+      });
     } catch (err) {
       console.error("Failed to update article", err);
+
+      Swal.fire({
+        icon: "error",
+        title: "Update Failed",
+        text: err.response?.data?.message || "Something went wrong!",
+      });
     } finally {
       setShowUpdateModal(false);
     }

@@ -48,9 +48,9 @@ const Banner = () => {
   ];
 
   return (
-    <div className="my-12">
+    <div className="mb-12">
       <div
-        className="py-16 px-5 md:px-12 rounded-2xl bg-cover bg-center bg-no-repeat text-white"
+        className="py-16 px-5 md:px-16 bg-cover bg-center bg-no-repeat text-white"
         style={{
           backgroundImage: `url(${bgImage})`,
           backgroundBlendMode: "overlay",
@@ -63,13 +63,13 @@ const Banner = () => {
             <h1 className="text-3xl md:text-4xl font-bold">
               Share Your Knowledge Through Articles
             </h1>
-            <p className="text-lg md:text-xl text-gray-200">
+            <p className="text-lg md:text-xl text-gray-100">
               Write articles, inspire others, and discover ideas from fellow
               thinkers.
             </p>
             <button
               onClick={() => navigate("/allArticles")}
-              className="bg-secondary hover:bg-primary cursor-pointer px-6 py-3 rounded-full font-semibold transition"
+              className="bg-secondary hover:bg-primary cursor-pointer px-4 py-1.5 rounded-full font-semibold transition"
             >
               Explore Articles
             </button>

@@ -50,7 +50,7 @@ const AllArticles = () => {
               </p>
             
               <Link to={`/articles/${article._id}`}>
-                <button className="btn btn-secondary text-base-100">
+                <button className="btn btn-secondary hover:bg-primary">
                   Read More
                 </button>
               </Link>
