@@ -79,14 +79,20 @@ const AllArticles = () => {
               variants={cardVariants}
               initial="hidden"
               animate="visible"
-              whileHover={{ scale: 1.03 }}
+            
             >
               <div>
-                <img
-                  src={article.thumbnail}
-                  alt={article.title}
-                  className="w-full h-40 object-cover rounded mb-3"
-                />
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="overflow-hidden rounded mb-3"
+                >
+                  <img
+                    src={article.thumbnail}
+                    alt={article.title}
+                    className="w-full h-40 object-cover transition-transform duration-300"
+                  />
+                </motion.div>
+
                 <h3 className="text-xl font-semibold mb-1 capitalize">
                   {article.title}
                 </h3>

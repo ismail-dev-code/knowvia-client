@@ -10,6 +10,8 @@ import SignIn from "../signIn/SignIn";
 import Register from "../pages/register/Register";
 import PrivateRoute from "../routes/PrivateRoute";
 import SingleArticle from "../components/SingleArticle";
+import Categories from "../pages/Home/Categories";
+import CategoryArticles from "../components/CategoryArticles";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -40,8 +42,28 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/articles/category/:category",
+        element: (
+          <PrivateRoute>
+            <CategoryArticles />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/articles/category/:categoryName",
+        element: (
+          <PrivateRoute>
+            <Categories />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "/articles/:id",
-        element: <SingleArticle />,
+        element: (
+          <PrivateRoute>
+            <SingleArticle />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/aboutUs",

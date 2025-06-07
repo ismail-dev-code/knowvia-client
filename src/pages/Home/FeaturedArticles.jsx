@@ -65,8 +65,8 @@ const FeaturedArticles = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <h2 className="text-2xl font-bold text-center">Featured Articles</h2>
-      <p className="text-center mx-auto max-w-xl mb-8 text-accent">
+      <h2 className="text-3xl font-bold text-center pb-2">Featured Articles</h2>
+      <p className="text-center mx-auto max-w-xl mb-8 text-gray-400">
         Stay ahead with our top six featured articles—covering the most
         talked-about topics, latest trends, and must-read stories.
       </p>
@@ -80,18 +80,23 @@ const FeaturedArticles = () => {
             variants={cardVariants}
             initial="hidden"
             animate="visible"
-       
           >
-            <img
-              src={article.thumbnail}
-              alt={article.title}
-              className="w-full h-40 object-cover rounded mb-3"
-            />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="overflow-hidden rounded mb-3"
+            >
+              <img
+                src={article.thumbnail}
+                alt={article.title}
+                className="w-full h-40 object-cover rounded mb-3"
+              />
+            </motion.div>
             <h3 className="text-xl font-semibold mb-1 capitalize">
               {article.title}
             </h3>
             <p className="text-sm text-gray-600 mb-1">
-              By <span className="font-medium capitalize">{article.username}</span>
+              By{" "}
+              <span className="font-medium capitalize">{article.username}</span>
             </p>
             <p className="text-xs text-gray-400 mb-2">
               Published on: {article.date}

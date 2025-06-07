@@ -6,6 +6,9 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import JoditEditor from "jodit-react";
+import { useRef } from "react";
+
 const MyArticles = () => {
   const { user } = useContext(AuthContext);
   const [myArticles, setMyArticles] = useState([]);
@@ -108,58 +111,59 @@ const MyArticles = () => {
           </div>
         </>
       ) : (
-        <table className="min-w-full table-auto border border-gray-200">
-          <thead className="text-sm">
-            <tr>
-              <th className="px-4 py-2 border text-nowrap">Serial No.</th>
-
-              <th className="px-4 py-2 border">Title</th>
-              <th className="px-4 py-2 border">Category</th>
-              <th className="px-4 py-2 border">Description</th>
-              <th className="px-4 py-2 border">Date</th>
-              <th className="px-4 py-2 border">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {myArticles.map((article, index) => (
-              <tr key={article._id} className="text-sm text-center">
-                <td className="border px-2 py-2">{index + 1}</td>
-
-                <td className="border px-2 py-2">{article.title}</td>
-                <td className="border px-2 py-2">{article.category}</td>
-                <td className="border px-2 py-2 text-left">
-                  {article.content.length > 100
-                    ? `${article.content.slice(0, 80)}...`
-                    : article.content}
-                </td>
-
-                <td className="border px-2 py-2 text-nowrap">{article.date}</td>
-                <td className="border flex flex-col gap-0.5 py-2 items-center">
-                  <button
-                    onClick={() => openUpdateModal(article)}
-                    className="text-blue-500 hover:text-blue-600 px-3 py-1 rounded"
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content={"Update Article"}
-                    data-tooltip-place="top"
-                    data-tooltip-class-name="z-50"
-                  >
-                    <FaEdit className="cursor-pointer" size={20} />
-                  </button>
-                  <button
-                    onClick={() => openDeleteModal(article._id)}
-                    className="text-red-500 hover:text-red-600 px-3 py-1 rounded"
-                    data-tooltip-id="my-tooltip"
-                    data-tooltip-content={"Delete Article"}
-                    data-tooltip-place="top"
-                    data-tooltip-class-name="z-50"
-                  >
-                    <MdDelete className="cursor-pointer" size={20} />
-                  </button>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="min-w-full table-auto border border-gray-200">
+            <thead className="text-sm">
+              <tr>
+                <th className="px-4 py-2 border text-nowrap">Serial No.</th>
+                <th className="px-4 py-2 border">Title</th>
+                <th className="px-4 py-2 border">Category</th>
+                <th className="px-4 py-2 border">Description</th>
+                <th className="px-4 py-2 border">Date</th>
+                <th className="px-4 py-2 border">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="border">
+              {myArticles.map((article, index) => (
+                <tr key={article._id} className="text-sm text-center">
+                  <td className="border px-2 py-2">{index + 1}</td>
+                  <td className="border px-2 py-2">{article.title}</td>
+                  <td className="border px-2 py-2">{article.category}</td>
+                  <td className="border px-2 py-2 text-left">
+                    {article.content.length > 100
+                      ? `${article.content.slice(0, 80)}...`
+                      : article.content}
+                  </td>
+                  <td className="border px-2 py-2 text-nowrap">
+                    {article.date}
+                  </td>
+                  <td className="md:border-b border-b-0 flex flex-col gap-0.5 py-2 items-center">
+                    <button
+                      onClick={() => openUpdateModal(article)}
+                      className="text-blue-500 hover:text-blue-600 px-3 py-1 rounded"
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content={"Update Article"}
+                      data-tooltip-place="top"
+                      data-tooltip-class-name="z-50"
+                    >
+                      <FaEdit className="cursor-pointer" size={20} />
+                    </button>
+                    <button
+                      onClick={() => openDeleteModal(article._id)}
+                      className="text-red-500 hover:text-red-600 px-3 py-1 rounded"
+                      data-tooltip-id="my-tooltip"
+                      data-tooltip-content={"Delete Article"}
+                      data-tooltip-place="top"
+                      data-tooltip-class-name="z-50"
+                    >
+                      <MdDelete className="cursor-pointer" size={20} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {showUpdateModal && selectedArticle && (
@@ -196,7 +200,7 @@ const MyArticles = () => {
                 })
               }
               required
-              className="w-full border p-2 rounded h-32"
+              className="w-full border p-2 rounded h-32 whitespace-normal break-words text-base leading-relaxed"
             />
 
             <select
@@ -218,6 +222,8 @@ const MyArticles = () => {
               <option value="Lifestyle">Lifestyle</option>
               <option value="Business">Business</option>
               <option value="Environment">Environment</option>
+              <option value="Science">Science</option>
+              <option value="Arts">Arts</option>
             </select>
 
             <input
@@ -235,7 +241,7 @@ const MyArticles = () => {
             />
 
             <input
-              type="text"
+              type="url"
               name="thumbnail"
               placeholder="Image URL"
               value={selectedArticle.thumbnail || ""}

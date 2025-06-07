@@ -88,7 +88,7 @@ const PostArticle = () => {
           value={formData.content}
           onChange={handleChange}
           required
-          className="w-full border p-2 rounded h-32"
+          className="w-full border p-2 rounded h-32 whitespace-normal break-words text-base leading-relaxed"
         />
         <select
           name="category"
@@ -116,7 +116,7 @@ const PostArticle = () => {
           className="w-full border p-2 rounded"
         />
         <input
-          type="text"
+          type="url"
           name="thumbnail"
           placeholder="Image URL"
           value={formData.thumbnail}
