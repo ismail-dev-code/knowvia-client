@@ -125,28 +125,49 @@ const PostArticle = () => {
           className="w-full border p-2 rounded"
         />
 
-        <input
-          name="username"
-          value={user?.displayName}
-          onChange={handleChange}
-          disabled
-          className="w-full border p-2 rounded"
-        />
-        <input
-          name="userEmail"
-          value={user?.email}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          disabled
-        />
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          disabled
-        />
+       <div className="mb-4">
+  <label htmlFor="username" className="block mb-1 font-medium">
+    Your Name
+  </label>
+  <input
+    id="username"
+    name="username"
+    value={user?.displayName}
+    onChange={handleChange}
+    disabled
+    className="w-full border p-2 rounded"
+  />
+</div>
+
+<div className="mb-4">
+  <label htmlFor="userEmail" className="block mb-1 font-medium">
+    Your Email
+  </label>
+  <input
+    id="userEmail"
+    name="userEmail"
+    value={user?.email}
+    onChange={handleChange}
+    className="w-full border p-2 rounded"
+    disabled
+  />
+</div>
+
+<div className="mb-4">
+  <label htmlFor="date" className="block mb-1 font-medium">
+   Publication Date
+  </label>
+  <input
+    type="date"
+    id="date"
+    name="date"
+    value={formData.date}
+    onChange={handleChange}
+    className="w-full border p-2 rounded"
+    disabled
+  />
+</div>
+
         <button
           type="submit"
           className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded hover:bg-green-700"
