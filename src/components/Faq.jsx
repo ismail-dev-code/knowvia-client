@@ -8,7 +8,7 @@ const Faq = () => {
     {
       question: "What is Knowvia?",
       answer:
-        "Knowvia is an online platform dedicated to sharing and accessing quality knowledge across various fields.",
+        "It's a knowledge-sharing platform where students and individuals can publish articles, exchange insights, and share content across diverse topics.",
     },
     {
       question: "How can I create an account?",
@@ -28,7 +28,7 @@ const Faq = () => {
     {
       question: "How do I edit or delete my articles?",
       answer:
-        "You can manage your articles in the 'My Articles' section, where you can edit or delete your posts anytime.",
+        "You can manage your articles in 'My Articles' in the navigation bar, where you can edit or delete your posts anytime.",
     },
     {
       question: "Is there a way to interact with other users?",
@@ -94,7 +94,7 @@ const Faq = () => {
             id={`faq-radio-${index}`}
           />
           <div
-            className="collapse-title font-semibold text-xl cursor-pointer"
+            className="collapse-title font-semibold cursor-pointer"
             htmlFor={`faq-radio-${index}`}
           >
             {question}

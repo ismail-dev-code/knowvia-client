@@ -182,15 +182,9 @@ const NavBar = () => {
           <>
             <Link
               to="/signIn"
-              className="text-sm lg:block hidden text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-3 py-1 rounded transition"
+              className="text-sm text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-3 py-1 rounded transition"
             >
-              Sign In
-            </Link>
-            <Link
-              to="/register"
-              className="text-sm text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-3 py-1 rounded transition"
-            >
-              Register
+              Log In
             </Link>
           </>
         )}

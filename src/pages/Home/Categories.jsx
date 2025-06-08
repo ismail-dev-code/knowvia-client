@@ -30,8 +30,8 @@ const Categories = () => {
   const formatCategory = (cat) => cat.charAt(0).toUpperCase() + cat.slice(1);
 
   return (
-    <div className="relative max-w-4xl mx-auto px-4 py-16 md:py-28 mb-24 overflow-hidden rounded-xl">
-      <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">
+    <div className="relative max-w-4xl mx-auto px-4 pt-12 mb-12 overflow-hidden rounded-xl">
+      <h2 className="text-2xl font-bold text-center mb-2">
         Explore Categories
       </h2>
       <p className="text-center text-gray-500 mb-5">
@@ -48,7 +48,7 @@ const Categories = () => {
           768: { slidesPerView: 6 },
         }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        loop={true}
+        
       >
         {categories.map((category) => (
           <SwiperSlide key={category}>
