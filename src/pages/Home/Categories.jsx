@@ -30,12 +30,7 @@ const Categories = () => {
   const formatCategory = (cat) => cat.charAt(0).toUpperCase() + cat.slice(1);
 
   return (
-    <div
-      className="relative max-w-4xl mx-auto px-4 py-16 md:py-28 mb-24 overflow-hidden rounded-xl"
-      style={{
-        background: "linear-gradient(to right, #f0f4ff, #e0f7fa)",
-      }}
-    >
+    <div className="relative max-w-4xl mx-auto px-4 py-16 md:py-28 mb-24 overflow-hidden rounded-xl">
       <h2 className="text-2xl font-bold text-center mb-2 text-gray-800">
         Explore Categories
       </h2>

@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Player } from "@lottiefiles/react-lottie-player";
+import FaqAnimation from "../assets/lotties/faq_animation.json";
 
 const Faq = () => {
   const faqs = [
@@ -19,9 +21,9 @@ const Faq = () => {
         "Yes, Knowvia offers free access to most of its learning resources and community features.",
     },
     {
-      question: "Can I contribute articles or tutorials?",
+      question: "Can I contribute articles?",
       answer:
-        "Absolutely! You can submit your own articles or tutorials by using the 'Submit Article' feature after logging in.",
+        "Yes, we encourage contributions. To submit an article, please log in first, as the 'Post Article' feature is available to registered users only. Once logged in, go to the 'Post Article' in the navigation bar, fill out the form, and click the 'Submit Article' button.",
     },
     {
       question: "How do I edit or delete my articles?",
@@ -31,7 +33,7 @@ const Faq = () => {
     {
       question: "Is there a way to interact with other users?",
       answer:
-        "Yes, Knowvia has comment sections under articles and a community forum for discussions.",
+        "Yes, Knowvia allows user interaction through the comment section available on every article’s detail page. To like or comment, please make sure you're logged in.",
     },
     {
       question: "How do I reset my password?",
@@ -63,7 +65,18 @@ const Faq = () => {
       viewport={{ once: true }}
       style={{ padding: "20px", maxWidth: "1300px", margin: "0 auto" }}
     >
-      <h2 className="text-2xl font-bold mb-4">Frequently Asked Questions</h2>
+      <div className="flex justify-center">
+        <Player
+          autoplay
+          loop
+          src={FaqAnimation}
+          style={{ height: "300px", width: "300px" }}
+        />
+      </div>
+
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Frequently Asked Questions
+      </h2>
 
       {faqs.map(({ question, answer }, index) => (
         <motion.div
@@ -81,7 +94,7 @@ const Faq = () => {
             id={`faq-radio-${index}`}
           />
           <div
-            className="collapse-title font-semibold cursor-pointer"
+            className="collapse-title font-semibold text-xl cursor-pointer"
             htmlFor={`faq-radio-${index}`}
           >
             {question}
