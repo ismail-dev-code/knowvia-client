@@ -28,7 +28,7 @@ const Faq = () => {
     {
       question: "How do I edit or delete my articles?",
       answer:
-        "You can manage your articles in 'My Articles' in the navigation bar, where you can edit or delete your posts anytime.",
+        "You can manage your articles in 'My Articles' in the navigation bar, where you can edit or delete your posts anytime. please make sure you're logged in",
     },
     {
       question: "Is there a way to interact with other users?",

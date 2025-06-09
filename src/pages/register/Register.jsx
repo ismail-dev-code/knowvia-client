@@ -104,7 +104,7 @@ const Register = () => {
                     to={"/"}
                     className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
                   >
-                    <FaRegLightbulb className="text-secondary hidden md:block" />
+                    <FaRegLightbulb className="text-secondary" />
                     Knowvia
                   </Link>
           <h1 className="text-xl font-bold mb-3 text-center">

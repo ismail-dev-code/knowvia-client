@@ -51,7 +51,7 @@ const socialLinks = [
 const contactInfo = {
   email: "support@knowvia.com",
   phone: "+88 (018) 567-890",
-  address: "172 Knowledge Rd, Noakhali, Bangladesh",
+  address: "172 Knowledge Rd, Maijdee, Noakhali, Bangladesh",
 };
 
 const Footer = () => {

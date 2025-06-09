@@ -4,6 +4,7 @@ import FeaturedArticles from "./FeaturedArticles";
 import Categories from "../Home/Categories";
 import CommunityHighlight from "./CommunityHighlight";
 import Knowledge from "./Knowledge";
+import Map from "../Shared/Map";
 const Home = () => {
   return (
     <>
@@ -12,6 +13,7 @@ const Home = () => {
       <Categories />
       <CommunityHighlight/>
       <Knowledge/>
+      <Map/>
     </>
   );
 };

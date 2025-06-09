@@ -25,7 +25,8 @@ const CommunityHighlight = () => {
         {comments.slice(0, 4).map((comment) => (
           <div
             key={comment._id}
-            className="bg-white p-4 rounded-xl hover:shadow-xl w-full h-48 flex flex-col justify-between"
+            className="bg-white p-4
+             hover:border-l-1 hover:border-primary rounded-2xl w-full h-48 flex flex-col justify-between"
           >
             <p className="italic text-gray-700 mb-2 line-clamp-3">
               "{comment.comment}"
