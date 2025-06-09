@@ -12,14 +12,24 @@ const CategoryArticles = () => {
 
   useEffect(() => {
     const fetchCategoryArticles = async () => {
+      setLoading(true);
       try {
-        const res = await axios.get(`http://localhost:3000/articles`);
-        const filtered = res.data.filter(
-          (article) => article.category.toLowerCase() === category.toLowerCase()
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(
+          `http://localhost:3000/articles?category=${category}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: false,
+          }
         );
-        setArticles(filtered);
+
+        setArticles(res.data);
       } catch (err) {
         console.error("Failed to fetch category articles:", err);
+        setArticles([]);
       } finally {
         setLoading(false);
       }
@@ -28,7 +38,12 @@ const CategoryArticles = () => {
     fetchCategoryArticles();
   }, [category]);
 
-  if (loading) return <div className="text-center py-8"><Loading/></div>;
+  if (loading)
+    return (
+      <div className="text-center py-8">
+        <Loading />
+      </div>
+    );
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
@@ -61,7 +76,9 @@ const CategoryArticles = () => {
                 <p className="text-sm text-gray-700 font-medium capitalize">
                   by {article.username}
                 </p>
-                <p className="text-sm text-gray-600 mb-2">Published on: {article.date}</p>
+                <p className="text-sm text-gray-600 mb-2">
+                  Published on: {article.date}
+                </p>
                 <p className="text-sm text-gray-700 mb-4">
                   {article.content.slice(0, 100)}...
                 </p>

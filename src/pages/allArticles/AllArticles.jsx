@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
-import { AuthContext } from "../../context/authContext/AuthContext";
 import Loading from "../Shared/Loading";
 import { motion } from "framer-motion";
 
@@ -17,7 +16,16 @@ const AllArticles = () => {
         const url = category
           ? `http://localhost:3000/articles?category=${category}`
           : "http://localhost:3000/articles";
-        const res = await axios.get(url);
+
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        });
+
         setArticles(res.data);
       } catch (err) {
         console.error("Error fetching articles:", err);
@@ -79,7 +87,6 @@ const AllArticles = () => {
               variants={cardVariants}
               initial="hidden"
               animate="visible"
-            
             >
               <div>
                 <motion.div

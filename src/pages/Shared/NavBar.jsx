@@ -86,7 +86,6 @@ const NavBar = () => {
     if (result.isConfirmed) {
       try {
         await logOut();
-        Swal.fire("Logged out!", "You have been signed out.", "success");
         navigate("/");
       } catch (error) {
         console.error("Logout failed", error);

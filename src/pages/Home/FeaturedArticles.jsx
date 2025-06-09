@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
 import Loading from "../Shared/Loading";
@@ -12,7 +12,15 @@ const FeaturedArticles = () => {
     const fetchFeaturedArticles = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:3000/articles");
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get("http://localhost:3000/articles", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        });
+
         const articles = res.data;
         const sorted = articles
           .sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -65,7 +73,7 @@ const FeaturedArticles = () => {
       variants={pageVariants}
       transition={pageTransition}
     >
-      <h2 className="text-3xl font-bold text-center pb-2">Featured Articles</h2>
+      <h2 className="text-2xl font-bold text-center pb-2">Featured Articles</h2>
       <p className="text-center mx-auto max-w-xl mb-8 text-gray-400">
         Stay ahead with our top six featured articles—covering the most
         talked-about topics, latest trends, and must-read stories.

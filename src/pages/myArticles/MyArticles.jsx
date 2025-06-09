@@ -6,8 +6,6 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
-import JoditEditor from "jodit-react";
-import { useRef } from "react";
 
 const MyArticles = () => {
   const { user } = useContext(AuthContext);
@@ -24,12 +22,19 @@ const MyArticles = () => {
 
   const fetchArticles = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/articles");
-      const allArticles = response.data;
-      const userArticles = allArticles.filter(
-        (article) => article.userEmail === user?.email
-      );
-      setMyArticles(userArticles);
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("No token found");
+        return;
+      }
+
+      const response = await axios.get("http://localhost:3000/myArticles", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setMyArticles(response.data);
     } catch (error) {
       console.error("Failed to fetch articles:", error);
     } finally {
@@ -53,11 +58,22 @@ const MyArticles = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("No token found");
+        return Swal.error("Not valid user.");
+      }
       const { _id, ...updatedArticle } = selectedArticle;
 
       await axios.patch(
         `http://localhost:3000/articles/${_id}`,
-        updatedArticle
+        updatedArticle,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
 
       fetchArticles();
@@ -99,7 +115,7 @@ const MyArticles = () => {
     );
 
   return (
-    <div className="max-w-6xl mx-auto p-4">
+    <div className="max-w-6xl mx-auto mt-10 mb-32 md:mb-64 p-4">
       <h2 className="text-2xl font-bold mb-6">My Articles</h2>
       {myArticles.length === 0 ? (
         <>

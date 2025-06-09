@@ -11,6 +11,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
+import axios from "axios";
+import { toast } from "react-toastify";
 const provider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -34,14 +36,41 @@ const AuthProvider = ({ children }) => {
   const updateUser = (updatedData) => {
     return updateProfile(auth.currentUser, updatedData);
   };
-  const logOut = () => {
+  const logOut = async () => {
     setLoading(true);
-    return signOut(auth);
+    try {
+      await signOut(auth);
+      localStorage.removeItem("token");
+      toast.success("Logged out successfully!");
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Failed to log out.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser?.email) {
+        axios
+          .post(
+            "http://localhost:3000/jwt",
+            {
+              email: currentUser?.email,
+            },
+            {
+              withCredentials: true,
+            }
+          )
+          .then((res) => {
+            localStorage.setItem("token", res.data.token);
+            toast.success(res.data.message || "JWT Created Successfully!");
+          });
+      } else {
+        localStorage.removeItem("token");
+      }
       setLoading(false);
     });
 

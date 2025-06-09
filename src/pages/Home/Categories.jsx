@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,7 +12,15 @@ const Categories = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/articles");
+        const token = localStorage.getItem("token");
+
+        const res = await axios.get("http://localhost:3000/articles", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        });
+
         const allCategories = res.data.map((article) =>
           article.category.trim().toLowerCase()
         );
@@ -48,7 +56,6 @@ const Categories = () => {
           768: { slidesPerView: 6 },
         }}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        
       >
         {categories.map((category) => (
           <SwiperSlide key={category}>
