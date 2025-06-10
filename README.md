@@ -3,7 +3,7 @@
 
 **Knowvia** is a full-stack MERN (MongoDB, Express.js, React, Node.js) web application designed to allow users to publish, edit, and manage articles — encouraging a culture of knowledge sharing.
 
-This project was built as part of the [Programming Hero Web Development Course](https://web.programming-hero.com/) and demonstrates a complete CRUD application using modern frontend and backend technologies.
+This project was built as part of the [Programming Hero Web Development Course](https://github.com/ProgrammingHero1) and demonstrates a complete CRUD application using modern frontend and backend technologies.
 
 ---
 
@@ -68,6 +68,7 @@ This project was built as part of the [Programming Hero Web Development Course](
 
 If you have any questions or feedback, feel free to reach out:
 
-Author: Ismail
-Email: hm.isamil772@gmail.com
-GitHub: @ismail-dev-code
+
+**Author:** Ismail  
+**Email:** hm.isamil772@gmail.com  
+**GitHub:** [@ismail-dev-code](https://github.com/ismail-dev-code)
