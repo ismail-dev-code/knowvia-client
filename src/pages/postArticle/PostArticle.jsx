@@ -73,8 +73,8 @@ const PostArticle = () => {
       console.error("Axios error:", error);
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "Something went wrong.",
+        title: "Unauthorized",
+        text: "You must be authenticated to perform this action.",
       });
     }
   };

@@ -22,7 +22,7 @@ const CategoryArticles = () => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            withCredentials: false,
+            withCredentials: true,
           }
         );
 

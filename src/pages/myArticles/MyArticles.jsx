@@ -44,12 +44,40 @@ const MyArticles = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/articles/${deleteId}`);
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("No token found");
+        return Swal.fire({
+          icon: "error",
+          title: "Unauthorized",
+          text: "You must be authenticated to perform this action.",
+        });
+      }
+
+      await axios.delete(`http://localhost:3000/articles/${deleteId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       setMyArticles((prev) =>
         prev.filter((article) => article._id !== deleteId)
       );
+
+      Swal.fire({
+        icon: "success",
+        title: "Deleted",
+        text: "The article was deleted successfully.",
+        confirmButtonColor: "#d33",
+      });
     } catch (err) {
       console.error("Failed to delete article", err);
+      Swal.fire({
+        icon: "error",
+        title: "Delete Failed",
+        text: err.response?.data?.message || "Something went wrong!",
+      });
     } finally {
       setShowDeleteModal(false);
     }
@@ -62,7 +90,11 @@ const MyArticles = () => {
 
       if (!token) {
         console.error("No token found");
-        return Swal.error("Not valid user.");
+        return Swal.fire({
+          icon: "error",
+          title: "Unauthorized",
+          text: "Authentication token missing.",
+        });
       }
       const { _id, ...updatedArticle } = selectedArticle;
 
@@ -90,7 +122,9 @@ const MyArticles = () => {
       Swal.fire({
         icon: "error",
         title: "Update Failed",
-        text: err.response?.data?.message || "Something went wrong!",
+        text:
+          err.response?.data?.message ||
+          "You must be authenticated to perform this action.",
       });
     } finally {
       setShowUpdateModal(false);
@@ -115,7 +149,7 @@ const MyArticles = () => {
     );
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 mb-32 md:mb-64 p-4">
+    <div className="max-w-6xl mx-auto mt-10 mb-24 md:mb-64 p-4">
       <h2 className="text-2xl font-bold mb-6">My Articles</h2>
       {myArticles.length === 0 ? (
         <>
