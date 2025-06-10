@@ -54,7 +54,7 @@ const AllArticles = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-6xl mx-auto p-6 mb-18 md:mb-32">
       <h2 className="text-3xl font-bold mb-8 text-center">All Articles</h2>
 
       <div className="flex justify-center mb-6">
