@@ -12,6 +12,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 import SingleArticle from "../components/SingleArticle";
 import Categories from "../pages/Home/Categories";
 import CategoryArticles from "../components/CategoryArticles";
+
 const router = createBrowserRouter([
   {
     path: "/",
