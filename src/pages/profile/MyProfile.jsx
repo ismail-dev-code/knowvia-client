@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import Swal from "sweetalert2";
 import "./MyProfile.css";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
   const { user, updateUser } = useContext(AuthContext);
@@ -31,48 +32,56 @@ const MyProfile = () => {
   };
 
   return (
-    <section className="profile-container shadow-none md:shadow-2xl ">
-      <h2 className="profile-title">My Profile</h2>
+    <>
+      <Helmet>
+        <title>Knowvia | My Profile</title>
+      </Helmet>
+      <section className="profile-container shadow-none md:shadow-2xl ">
+        <h2 className="profile-title">My Profile</h2>
 
-      <div className="profile-content">
-        <form onSubmit={handleUpdate} className="profile-form">
-          <div className="form-group">
-            <label>Display Name</label>
-            <input
-              type="text"
-              value={displayName}
-              onChange={(e) => setDisplayName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Photo URL</label>
-            <input
-              type="url"
-              value={photoURL}
-              onChange={(e) => setPhotoURL(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" className="update-btn bg-secondary text-white">
-            Update Profile
-          </button>
-        </form>
+        <div className="profile-content">
+          <form onSubmit={handleUpdate} className="profile-form">
+            <div className="form-group">
+              <label>Display Name</label>
+              <input
+                type="text"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Photo URL</label>
+              <input
+                type="url"
+                value={photoURL}
+                onChange={(e) => setPhotoURL(e.target.value)}
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="update-btn bg-secondary text-white"
+            >
+              Update Profile
+            </button>
+          </form>
 
-        <div className="profile-info">
-          <h4>Current Info</h4>
-          <p>
-            <strong>Email:</strong> {user?.email}
-          </p>
-          <p>
-            <strong>Name:</strong> {user?.displayName}
-          </p>
-          {user?.photoURL && (
-            <img src={user.photoURL} alt="Profile" className="profile-img" />
-          )}
+          <div className="profile-info">
+            <h4>Current Info</h4>
+            <p>
+              <strong>Email:</strong> {user?.email}
+            </p>
+            <p>
+              <strong>Name:</strong> {user?.displayName}
+            </p>
+            {user?.photoURL && (
+              <img src={user.photoURL} alt="Profile" className="profile-img" />
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

@@ -4,7 +4,7 @@ import "leaflet/dist/leaflet.css";
 import { CiLocationOn } from "react-icons/ci";
 const Map = () => {
   const [leafletError, setLeafletError] = useState(false);
-  const officeLatLng = [22.8236, 91.0973]; 
+  const officeLatLng = [22.8236, 91.0973];
 
   const handleGetDirections = () => {
     if (!navigator.geolocation) {
@@ -65,7 +65,9 @@ const Map = () => {
     <div className="max-w-5xl mx-auto px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div>
-          <h2 className="md:text-2xl text-xl font-bold mb-4">Visit the Knowvia Office</h2>
+          <h2 className="md:text-2xl text-xl font-bold mb-4">
+            Visit the Knowvia Office
+          </h2>
           <p className="text-gray-500 text-sm mb-3">
             Our office is located at the heart of Maijdee in Noakhali. Whether
             you're seeking collaboration, knowledge-sharing opportunities, or
@@ -94,7 +96,7 @@ const Map = () => {
               loading="lazy"
             ></iframe>
           ) : (
-            <div id="map" style={{ height: "400px", width: "100%" }}></div>
+            <div id="map" className="w-full h-[200px] sm:h-[400px]"></div>
           )}
         </div>
       </div>

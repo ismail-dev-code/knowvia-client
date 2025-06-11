@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { AuthContext } from "../context/authContext/AuthContext";
 import { FaRegLightbulb } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const SignIn = () => {
   const { signIn, resetPassword } = useContext(AuthContext);
@@ -69,6 +70,9 @@ const SignIn = () => {
   };
 
   return (
+    <> <Helmet>
+        <title>Knowvia | Login</title>
+      </Helmet>
     <div className="hero bg-base-200 min-h-screen px-4 md:px-8">
       <div className="hero-content flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20 w-full">
         <Motion.div
@@ -164,6 +168,7 @@ const SignIn = () => {
         </Motion.div>
       </div>
     </div>
+    </>
   );
 };
 

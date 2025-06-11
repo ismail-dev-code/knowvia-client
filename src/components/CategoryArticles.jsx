@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import Loading from "../pages/Shared/Loading";
+import { Helmet } from "react-helmet";
 
 const CategoryArticles = () => {
   const { category } = useParams();
@@ -46,57 +47,64 @@ const CategoryArticles = () => {
     );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-6">
-      <h2 className="text-2xl font-bold mb-6 capitalize">
-        Articles in "{category}"
-      </h2>
+    <>
+      <Helmet>
+        <title>Knowvia | Article Category</title>
+      </Helmet>
+      <div className="max-w-6xl mx-auto px-4 py-6">
+        <h2 className="text-2xl font-bold mb-6 capitalize">
+          Articles in "{category}"
+        </h2>
 
-      {articles.length === 0 ? (
-        <p className="text-center">No articles found in this category.</p>
-      ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {articles.map((article) => (
-            <div
-              key={article._id}
-              className="p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between h-full"
-            >
-              <div>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="mb-3 overflow-hidden rounded"
-                >
-                  <img
-                    src={article.thumbnail}
-                    alt={article.title}
-                    className="w-full h-40 object-cover"
-                  />
-                </motion.div>
+        {articles.length === 0 ? (
+          <p className="text-center">No articles found in this category.</p>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.map((article) => (
+              <div
+                key={article._id}
+                className="p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between h-full"
+              >
+                <div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    className="mb-3 overflow-hidden rounded"
+                  >
+                    <img
+                      src={article.thumbnail}
+                      alt={article.title}
+                      className="w-full h-40 object-cover"
+                    />
+                  </motion.div>
 
-                <h3 className="text-lg font-semibold mb-2">{article.title}</h3>
-                <p className="text-sm text-gray-700 font-medium capitalize">
-                  by {article.username}
-                </p>
-                <p className="text-sm text-gray-600 mb-2">
-                  Published on: {article.date}
-                </p>
-                <p className="text-sm text-gray-700 mb-4">
-                  {article.content.slice(0, 100)}...
-                </p>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-gray-700 font-medium capitalize">
+                    by {article.username}
+                  </p>
+                  <p className="text-sm text-gray-600 mb-2">
+                    Published on: {article.date}
+                  </p>
+                  <p className="text-sm text-gray-700 mb-4">
+                    {article.content.slice(0, 100)}...
+                  </p>
+                </div>
+
+                <div className="mt-auto">
+                  <Link
+                    to={`/articles/${article._id}`}
+                    className="text-blue-500 hover:underline"
+                  >
+                    Read More
+                  </Link>
+                </div>
               </div>
-
-              <div className="mt-auto">
-                <Link
-                  to={`/articles/${article._id}`}
-                  className="text-blue-500 hover:underline"
-                >
-                  Read More
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
