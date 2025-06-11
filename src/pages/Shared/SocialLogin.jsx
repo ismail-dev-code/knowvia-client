@@ -4,9 +4,11 @@ import { useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../context/authContext/AuthContext";
 
-const SocialLogIn = ({ form }) => {
+const SocialLogIn = ({ form, mode = "signin" }) => {
   const navigate = useNavigate();
   const { signInWithGoogle } = useContext(AuthContext);
+  const buttonLabel =
+    mode === "signup" ? "Sign up with Google" : "Sign in with Google";
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
@@ -35,7 +37,7 @@ const SocialLogIn = ({ form }) => {
           onClick={handleGoogleSignIn}
           className="w-full flex items-center justify-center gap-2 bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded transition cursor-pointer text-sm"
         >
-          <FcGoogle size={20} /> Sign in with Google
+          <FcGoogle size={20} /> {buttonLabel}
         </button>
       </div>
     </div>

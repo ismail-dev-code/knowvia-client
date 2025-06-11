@@ -62,7 +62,6 @@ const NavBar = () => {
     };
   }, []);
 
-
   const [isDark, setIsDark] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
@@ -82,7 +81,6 @@ const NavBar = () => {
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(!isDark);
-
 
   const handleLogout = async () => {
     const result = await Swal.fire({
@@ -219,7 +217,9 @@ const NavBar = () => {
               </button>
               {showDropdown && (
                 <div className="menu absolute -right-8 md:right-0 top-13 bg-base-100 shadow-lg rounded-box w-64 p-3 z-50">
-                  <p className="md:text-sm text-xs mb-2 font-semibold">Notifications</p>
+                  <p className="md:text-sm text-xs mb-2 font-semibold">
+                    Notifications
+                  </p>
                   <div className="flex justify-between items-center py-1">
                     <span>Total Likes:</span>
                     <span className="font-bold">
@@ -259,6 +259,11 @@ const NavBar = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
+                <li>
+                  <Link to="/profile" className="justify-between">
+                    My Profile
+                  </Link>
+                </li>
                 <li>
                   <Link to="/myArticles" className="justify-between">
                     My Articles

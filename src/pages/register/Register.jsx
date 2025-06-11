@@ -191,7 +191,7 @@ const Register = () => {
             </div>
           </form>
 
-          <SocialLogIn />
+          <SocialLogIn mode="signup" />
 
           <p className="text-center mt-4">
             Already have an account? Please{" "}

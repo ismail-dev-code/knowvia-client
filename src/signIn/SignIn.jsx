@@ -71,31 +71,28 @@ const SignIn = () => {
   return (
     <div className="hero bg-base-200 min-h-screen px-4 md:px-8">
       <div className="hero-content flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20 w-full">
-     
         <Motion.div
           className="hidden lg:block w-1/4"
-          initial={{ x: -200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <Lottie animationData={lottilogIn} loop={true} />
         </Motion.div>
 
-    
         <Motion.div
           className="card w-full md:w-8/12 lg:w-4/12 mx-auto bg-base-100 max-w-md lg:max-w-lg shrink-0 shadow-2xl"
-          initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 3, ease: "easeOut" }}
+          transition={{ duration: 0.5 }}
         >
           <div className="card-body">
             <Link
-          to={"/"}
-          className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
-        >
-          <FaRegLightbulb className="text-secondary" />
-          Knowvia
-        </Link>
+              to={"/"}
+              className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
+            >
+              <FaRegLightbulb className="text-secondary" />
+              Knowvia
+            </Link>
             <h1 className="text-xl mt-0 font-bold text-center">
               Access Your Account
             </h1>
@@ -112,20 +109,20 @@ const SignIn = () => {
 
                 <label className="label mt-2">Password</label>
                 <div className="relative">
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  className="input input-bordered w-full pr-10"
-                  placeholder="Password"
-                  required
-                />
-                <span
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-3 cursor-pointer text-xl text-gray-500"
-                >
-                  {showPassword ? <FiEyeOff /> : <FiEye />}
-                </span>
-              </div>
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="input input-bordered w-full pr-10"
+                    placeholder="Password"
+                    required
+                  />
+                  <span
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-3 cursor-pointer text-xl text-gray-500"
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </span>
+                </div>
 
                 <div className="flex justify-between items-center mt-0.5">
                   <button
@@ -157,11 +154,10 @@ const SignIn = () => {
           </div>
         </Motion.div>
 
-      
         <Motion.div
           className="hidden lg:block w-1/4"
-          initial={{ x: 200, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 2 }}
         >
           <Lottie animationData={lottilogIn} />
