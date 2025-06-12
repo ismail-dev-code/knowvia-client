@@ -3,18 +3,31 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { AuthContext } from "../context/authContext/AuthContext";
 import Loading from "../pages/Shared/Loading";
-import PostComment from "./PostComment";
 import { toast } from "react-toastify";
 import { AiOutlineLike } from "react-icons/ai";
 import { Helmet } from "react-helmet";
+import CommentsSection from "./CommentsSection";
+
 const SingleArticle = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [article, setArticle] = useState(null);
-  const [comments, setComments] = useState(null);
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get(`https://knowvia-server.vercel.app/articles/${id}`)
+      .then((res) => {
+        setArticle(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error fetching article:", err);
+        setLoading(false);
+      });
+  }, [id]);
 
   useEffect(() => {
     if (article) {
@@ -24,34 +37,13 @@ const SingleArticle = () => {
     }
   }, [article, user]);
 
-  const fetchComments = () => {
-    axios
-      .get(`http://localhost:3000/comments/${id}`)
-      .then((res) => setComments(res.data))
-      .catch(console.error);
-  };
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/articles/${id}`)
-      .then((res) => {
-        setArticle(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Error fetching article:", err);
-        setLoading(false);
-      });
-    fetchComments();
-  }, [id]);
-
   const handleLike = () => {
-    if (user?.email === article.email) {
+    if (!user?.email) {
       return toast.error("Please log in first");
     }
 
     axios
-      .patch(`http://localhost:3000/like/${id}`, {
+      .patch(`https://knowvia-server.vercel.app/like/${id}`, {
         email: user?.email,
       })
       .then((res) => {
@@ -64,13 +56,17 @@ const SingleArticle = () => {
       });
   };
 
-  if (loading)
+  if (loading) {
     return (
       <div className="text-center">
         <Loading />
       </div>
     );
-  if (!article) return <p className="text-center my-22">Article not found.</p>;
+  }
+
+  if (!article) {
+    return <p className="text-center my-22">Article not found.</p>;
+  }
 
   return (
     <>
@@ -116,37 +112,8 @@ const SingleArticle = () => {
           </button>
         </div>
 
-        <div className="mt-6">
-          <h2 className="text-xl font-semibold mb-2">Comments</h2>
-          <PostComment
-            articleId={id}
-            user={user}
-            onCommentPosted={fetchComments}
-          />
-
-          <div className="space-y-4">
-            {comments?.length > 0 ? (
-              comments?.map((comment) => (
-                <div key={comment._id} className="shadow rounded p-3">
-                  <div className="flex items-center mb-2">
-                    <img
-                      src={comment.user_photo}
-                      alt={comment.user_name}
-                      className="w-8 h-8 rounded-full mr-2"
-                    />
-                    <strong className="capitalize">{comment.user_name}</strong>
-                  </div>
-                  <p>{comment.comment}</p>
-                  <small className="text-gray-500">
-                    Date: {new Date(comment.created_at).toLocaleString()}
-                  </small>
-                </div>
-              ))
-            ) : (
-              <p>No comments yet.</p>
-            )}
-          </div>
-        </div>
+   
+        <CommentsSection articleId={article._id} />
       </div>
     </>
   );

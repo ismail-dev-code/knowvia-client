@@ -30,7 +30,7 @@ const MyArticles = () => {
         return;
       }
 
-      const response = await axios.get("http://localhost:3000/myArticles", {
+      const response = await axios.get("https://knowvia-server.vercel.app/myArticles", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ const MyArticles = () => {
         });
       }
 
-      await axios.delete(`http://localhost:3000/articles/${deleteId}`, {
+      await axios.delete(`https://knowvia-server.vercel.app/articles/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -100,7 +100,7 @@ const MyArticles = () => {
       const { _id, ...updatedArticle } = selectedArticle;
 
       await axios.patch(
-        `http://localhost:3000/articles/${_id}`,
+        `https://knowvia-server.vercel.app/articles/${_id}`,
         updatedArticle,
         {
           headers: {
@@ -268,7 +268,7 @@ const MyArticles = () => {
                   })
                 }
                 required
-                className="w-full border p-2 rounded"
+                className="w-full border p-2 rounded text-gray-500 cursor-pointer"
               >
                 <option value="">Select Category</option>
                 <option value="Tech">Tech</option>

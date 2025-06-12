@@ -23,12 +23,14 @@ const NavBar = () => {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+    let intervalId;
+
     const fetchNotificationsCounts = async () => {
       const token = localStorage.getItem("token");
       if (!token) return;
 
       try {
-        const res = await fetch("http://localhost:3000/notifications/counts", {
+        const res = await fetch("https://knowvia-server.vercel.app/notifications/counts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +48,10 @@ const NavBar = () => {
 
     if (user) {
       fetchNotificationsCounts();
+      intervalId = setInterval(fetchNotificationsCounts, 10000);
     }
+
+    return () => clearInterval(intervalId);
   }, [user]);
 
   useEffect(() => {

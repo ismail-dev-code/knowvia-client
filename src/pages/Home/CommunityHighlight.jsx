@@ -8,7 +8,7 @@ const CommunityHighlight = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/comments/recent");
+        const res = await axios.get("https://knowvia-server.vercel.app/comments/recent");
         setComments(res.data);
       } catch (error) {
         console.error("Error fetching comments:", error);

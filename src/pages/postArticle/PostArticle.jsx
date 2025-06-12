@@ -37,7 +37,7 @@ const PostArticle = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "http://localhost:3000/articles",
+        "https://knowvia-server.vercel.app/articles",
         article,
         {
           headers: {
@@ -87,7 +87,7 @@ const PostArticle = () => {
       </Helmet>
       <div className="max-w-xl mx-auto p-4 md:mb-32 my-10">
         <h2 className="text-2xl font-bold mb-4">Post Article</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 text-primary">
           <input
             type="text"
             name="title"
@@ -110,7 +110,7 @@ const PostArticle = () => {
             value={formData.category}
             onChange={handleChange}
             required
-            className="w-full border p-2 rounded"
+            className="w-full border p-2 rounded cursor-pointer"
           >
             <option value="">Select Category</option>
             <option value="tech">Tech</option>

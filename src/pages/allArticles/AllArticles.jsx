@@ -15,8 +15,8 @@ const AllArticles = () => {
       setLoading(true);
       try {
         const url = category
-          ? `http://localhost:3000/articles?category=${category}`
-          : "http://localhost:3000/articles";
+          ? `https://knowvia-server.vercel.app/articles?category=${category}`
+          : "https://knowvia-server.vercel.app/articles";
 
         const token = localStorage.getItem("token");
 
@@ -67,7 +67,7 @@ const AllArticles = () => {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="select select-bordered w-full max-w-xs"
+            className="select select-bordered w-full max-w-xs cursor-pointer"
           >
             <option value="">All Categories</option>
             <option value="tech">Tech</option>

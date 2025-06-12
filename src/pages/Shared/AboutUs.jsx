@@ -63,7 +63,7 @@ const AboutUs = () => {
             <div key={entryIndex} className="mb-8">
               <h2 className="text-xl font-semibold mb-2">{entry.title}</h2>
               {entry.content.map((paragraph, i) => (
-                <p key={i} className="mb-3 text-gray-600 text-sm md:text-base">
+                <p key={i} className="mb-3 text-gray-400 text-xs md:text-sm">
                   {paragraph}
                 </p>
               ))}
