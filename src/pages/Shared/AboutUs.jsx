@@ -9,6 +9,9 @@ const AboutUs = () => {
   const [aboutData, setAboutData] = useState([]);
   const [error, setError] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     fetch("/knowvia_about_us.json")

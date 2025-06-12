@@ -10,6 +10,9 @@ const CategoryArticles = () => {
   const { category } = useParams();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   useEffect(() => {
     const fetchCategoryArticles = async () => {

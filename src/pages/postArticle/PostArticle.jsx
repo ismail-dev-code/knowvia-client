@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/authContext/AuthContext";
 import axios from "axios";
@@ -6,6 +6,9 @@ import { Helmet } from "react-helmet";
 
 const PostArticle = () => {
   const { user } = useContext(AuthContext);
+    useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const [formData, setFormData] = useState({
     title: "",
     content: "",

@@ -11,6 +11,10 @@ const AllArticles = () => {
   const [category, setCategory] = useState("");
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  useEffect(() => {
     const fetchArticles = async () => {
       setLoading(true);
       try {
