@@ -37,7 +37,7 @@ const PostArticle = () => {
       const token = localStorage.getItem("token");
 
       const response = await axios.post(
-        "https://knowvia-server.vercel.app/articles",
+        "http://localhost:3000/articles",
         article,
         {
           headers: {

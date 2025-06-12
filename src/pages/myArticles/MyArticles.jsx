@@ -30,7 +30,7 @@ const MyArticles = () => {
         return;
       }
 
-      const response = await axios.get("https://knowvia-server.vercel.app/myArticles", {
+      const response = await axios.get("http://localhost:3000/myArticles", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -56,7 +56,7 @@ const MyArticles = () => {
         });
       }
 
-      await axios.delete(`https://knowvia-server.vercel.app/articles/${deleteId}`, {
+      await axios.delete(`http://localhost:3000/articles/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -100,7 +100,7 @@ const MyArticles = () => {
       const { _id, ...updatedArticle } = selectedArticle;
 
       await axios.patch(
-        `https://knowvia-server.vercel.app/articles/${_id}`,
+        `http://localhost:3000/articles/${_id}`,
         updatedArticle,
         {
           headers: {

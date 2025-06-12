@@ -18,7 +18,7 @@ const SingleArticle = () => {
 
   useEffect(() => {
     axios
-      .get(`https://knowvia-server.vercel.app/articles/${id}`)
+      .get(`http://localhost:3000/articles/${id}`)
       .then((res) => {
         setArticle(res.data);
         setLoading(false);
@@ -37,13 +37,26 @@ const SingleArticle = () => {
     }
   }, [article, user]);
 
+  useEffect(() => {
+    if (!article) return;
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 200);
+    }
+  }, [article]);
+
   const handleLike = () => {
     if (!user?.email) {
       return toast.error("Please log in first");
     }
 
     axios
-      .patch(`https://knowvia-server.vercel.app/like/${id}`, {
+      .patch(`http://localhost:3000/like/${id}`, {
         email: user?.email,
       })
       .then((res) => {
@@ -107,13 +120,16 @@ const SingleArticle = () => {
 
         <div className="mb-4">
           <p>Likes: {likeCount}</p>
-          <button onClick={handleLike} className="btn btn-secondary">
+          <button
+            onClick={handleLike}
+            className="btn btn-secondary flex items-center gap-1"
+          >
             <AiOutlineLike size={22} /> {liked ? "Liked" : "Like"}
           </button>
         </div>
-
-   
-        <CommentsSection articleId={article._id} />
+        <div id="comments">
+          <CommentsSection articleId={article._id} />
+        </div>
       </div>
     </>
   );

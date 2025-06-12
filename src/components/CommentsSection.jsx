@@ -18,7 +18,7 @@ const Comment = ({ comment, articleId, onCommentPosted }) => {
     if (!replyText.trim()) return;
 
     try {
-      await axios.post(`https://knowvia-server.vercel.app/articles/${articleId}/comments`, {
+      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, {
         user_id: user.id,
         user_name: user.displayName,
         user_photo: user.photoURL,
@@ -44,13 +44,23 @@ const Comment = ({ comment, articleId, onCommentPosted }) => {
             className="w-8 h-8 rounded-full mr-2"
           />
         )}
-        <strong className="capitalize">{comment.user_name}</strong>
-        <small className="text-gray-500 ml-2 text-xs">
-          {new Date(comment.created_at).toLocaleString()}
-        </small>
+       
+        <strong className="capitalize text-nowrap">{comment.user_name}</strong>
+        
       </div>
+        
       <p className="mb-2">{comment.comment}</p>
-
+<small className="text-gray-500 ml-2 text-xs text-nowrap">
+  Date: {new Date(comment.created_at).toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long', 
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })}
+</small>
+<br />
       <button
         className="text-sm cursor-pointer text-blue-600 hover:underline mb-2"
         onClick={() => {
@@ -79,7 +89,7 @@ const Comment = ({ comment, articleId, onCommentPosted }) => {
             className="mt-1 btn btn-primary"
             disabled={!user}
           >
-            Submit Reply
+            Reply
           </button>
         </div>
       )}
@@ -112,7 +122,7 @@ const PostComment = ({ articleId, onCommentPosted }) => {
     if (!commentText.trim()) return;
 
     try {
-      await axios.post(`https://knowvia-server.vercel.app/articles/${articleId}/comments`, {
+      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, {
         user_id: user.id,
         user_name: user.displayName,
         user_photo: user.photoURL,
@@ -152,7 +162,7 @@ const CommentsSection = ({ articleId }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`https://knowvia-server.vercel.app/comments/${articleId}`);
+      const res = await axios.get(`http://localhost:3000/comments/${articleId}`);
       setComments(res.data);
     } catch (error) {
       console.error("Failed to load comments", error);

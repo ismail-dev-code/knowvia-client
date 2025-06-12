@@ -8,7 +8,7 @@ const CommunityHighlight = () => {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get("https://knowvia-server.vercel.app/comments/recent");
+        const res = await axios.get("http://localhost:3000/comments/recent");
         setComments(res.data);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -36,7 +36,7 @@ const CommunityHighlight = () => {
             </p>
             {comment.articleId && (
               <Link
-                to={`/articles/${comment.articleId}`}
+                to={`/articles/${comment.articleId}#comments`}
                 className="text-blue-600 text-sm mt-2 inline-block hover:underline"
               >
                 Join the conversation

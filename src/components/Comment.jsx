@@ -12,8 +12,8 @@ const Comment = ({ comment }) => {
           className="w-8 h-8 rounded-full mr-2"
         />
         <div>
-          <strong className="capitalize">{comment.user_name}</strong>
-          <p className="text-xs text-gray-500">{formattedDate}</p>
+          <strong className="capitalize text-nowrap">{comment.user_name}</strong>
+          <p className="text-xs text-gray-500 text-nowrap">{formattedDate}</p>
         </div>
       </div>
       <p>{comment.comment}</p>
