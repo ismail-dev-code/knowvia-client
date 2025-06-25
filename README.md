@@ -113,7 +113,7 @@ All endpoints start with: `https://knowvia-server.vercel.app`
 
 ## 🧪  `.env` (Backend)
 
-```env
+```env`
 PORT=5000
 DB_USER=your_db_username
 DB_PASS=your_db_password
