@@ -67,7 +67,7 @@ This project was built as part of the [Programming Hero Web Development](https:/
 
 ## 📚 API Endpoints
 
-All endpoints start with: `https://knowvia-api.onrender.com`
+All endpoints start with: `https://knowvia-server.vercel.app`
 
 ### 🔐 Authentication
 | Method | Endpoint      | Description                          |
@@ -118,7 +118,7 @@ PORT=5000
 DB_USER=your_db_username
 DB_PASS=your_db_password
 JWT_SECRET_KEY=your_secret
-
+---
 ## 📫 Contact
 
 If you have any questions or feedback, feel free to reach out:
