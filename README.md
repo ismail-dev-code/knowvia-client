@@ -118,7 +118,13 @@ PORT=5000
 DB_USER=your_db_username
 DB_PASS=your_db_password
 JWT_SECRET_KEY=your_secret
+
+
+
 ---
+
+
+
 ## 📫 Contact
 
 If you have any questions or feedback, feel free to reach out:
@@ -127,3 +133,6 @@ If you have any questions or feedback, feel free to reach out:
 **Author:** Ismail  
 **Email:** hm.isamil772@gmail.com  
 **GitHub:** [@ismail-dev-code](https://github.com/ismail-dev-code)
+
+
+---
