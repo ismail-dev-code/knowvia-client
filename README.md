@@ -111,7 +111,7 @@ All endpoints start with: `https://knowvia-server.vercel.app`
 
 ---
 
-## 🧪 Example `.env` (Backend)
+## 🧪  `.env` (Backend)
 
 ```env
 PORT=5000
@@ -119,15 +119,11 @@ DB_USER=your_db_username
 DB_PASS=your_db_password
 JWT_SECRET_KEY=your_secret
 
-
-
----
-
-
+--- 
 
 ## 📫 Contact
 
-If you have any questions or feedback, feel free to reach out:
+- If you have any questions or feedback, feel free to reach out:
 
 
 **Author:** Ismail  
@@ -135,4 +131,7 @@ If you have any questions or feedback, feel free to reach out:
 **GitHub:** [@ismail-dev-code](https://github.com/ismail-dev-code)
 
 
----
+
+
+
+
