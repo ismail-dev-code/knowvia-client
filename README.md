@@ -3,7 +3,7 @@
 
 **Knowvia** is a full-stack MERN (MongoDB, Express.js, React, Node.js) web application designed to allow users to publish, edit, and manage articles — encouraging a culture of knowledge sharing.
 
-This project was built as part of the [Programming Hero Web Development Course](https://github.com/ProgrammingHero1) and demonstrates a complete CRUD application using modern frontend and backend technologies.
+This project was built as part of the [Programming Hero Web Development](https://github.com/ProgrammingHero1) and demonstrates a complete CRUD application using modern frontend and backend technologies.
 
 ---
 
@@ -64,6 +64,61 @@ This project was built as part of the [Programming Hero Web Development Course](
 - CORS
 
 ---
+
+## 📚 API Endpoints
+
+All endpoints start with: `https://knowvia-api.onrender.com`
+
+### 🔐 Authentication
+| Method | Endpoint      | Description                          |
+|--------|---------------|--------------------------------------|
+| POST   | `/jwt`        | Generate JWT from Firebase user email |
+
+---
+
+### 📄 Articles
+| Method | Endpoint              | Description                       |
+|--------|-----------------------|-----------------------------------|
+| POST   | `/articles`           | Create a new article (JWT)        |
+| GET    | `/articles`           | Get all articles (optional `?category=...`) |
+| GET    | `/articles/:id`       | Get single article by ID          |
+| PATCH  | `/articles/:id`       | Update article by ID (JWT)        |
+| DELETE | `/articles/:id`       | Delete article and its comments (JWT) |
+| GET    | `/myArticles`         | Get articles by logged-in user (JWT) |
+
+---
+
+### ❤️ Likes
+| Method | Endpoint                | Description                            |
+|--------|-------------------------|----------------------------------------|
+| PATCH  | `/like/:articleId`      | Like or Unlike an article              |
+
+---
+
+### 💬 Comments
+| Method | Endpoint                           | Description                                      |
+|--------|------------------------------------|--------------------------------------------------|
+| POST   | `/articles/:id/comments`           | Add a comment to an article                     |
+| GET    | `/comments/:articleId`             | Get all nested comments for an article          |
+| GET    | `/comments/recent`                 | Get 10 most recent comments                     |
+
+---
+
+### 🔔 Notifications
+| Method | Endpoint                  | Description                             |
+|--------|---------------------------|-----------------------------------------|
+| GET    | `/notifications/counts`   | Get total likes and comments for user's articles (JWT) |
+
+---
+
+## 🧪 Example `.env` (Backend)
+
+```env
+PORT=5000
+DB_USER=your_db_username
+DB_PASS=your_db_password
+JWT_SECRET_KEY=your_secret
+
 ## 📫 Contact
 
 If you have any questions or feedback, feel free to reach out:
