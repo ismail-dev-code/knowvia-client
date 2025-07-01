@@ -102,8 +102,8 @@ const FeaturedArticles = () => {
 
       <div className="flex-1">
         <h3 className="text-lg font-semibold leading-snug capitalize text-gray-800">
-          {article.title.split(" ").length > 12
-            ? `${article.title.split(" ").slice(0, 12).join(" ")}...`
+          {article.title.split(" ").length > 9
+            ? `${article.title.split(" ").slice(0, 9).join(" ")}...`
             : article.title}
         </h3>
 

@@ -151,7 +151,7 @@ const SignIn = () => {
 
             <p className="text-center mt-4 text-sm">
               Don't have an account? Please{" "}
-              <Link to="/register" className="text-blue-500 hover:underline">
+              <Link to="/register" state={from} className="text-blue-500 hover:underline">
                 Register
               </Link>
             </p>

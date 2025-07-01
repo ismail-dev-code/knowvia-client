@@ -10,154 +10,145 @@ import { AuthContext } from "../../context/authContext/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { FaRegLightbulb } from "react-icons/fa";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
+import useImageUploader from "../../hooks/useImageUploader";
+
 const Register = () => {
   const navigate = useNavigate();
   const { createUser } = useContext(AuthContext);
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const { uploadImage, uploading, uploadedUrl: profilePic, setUploadedUrl } = useImageUploader();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
-    const photo = form.photo.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
 
     if (name.length < 6) {
-      Swal.fire({
-        icon: "warning",
-        title: "Invalid Name",
-        text: "Name should be at least 6 characters long!",
-      });
-      return;
+      return Swal.fire({ icon: "warning", title: "Invalid Name", text: "Name should be at least 6 characters long!" });
     }
-
+    if (!profilePic) {
+      return toast.error("Please upload your profile picture before submitting.");
+    }
     if (!passwordRegex.test(password)) {
-      Swal.fire({
+      return Swal.fire({
         icon: "warning",
         title: "Weak Password",
-        html: `
-          Password must contain:<br>
-          • At least <b>1 uppercase</b> letter<br>
-          • At least <b>1 lowercase</b> letter<br>
-          • At least <b>1 special character</b> (!@#$%^&*)<br>
-          • And be at least <b>6 characters</b> long
-        `,
+        html: `Password must contain:<br>• At least <b>1 uppercase</b><br>• At least <b>1 lowercase</b><br>• At least <b>1 special character</b><br>• At least <b>6 characters</b>`
       });
-      return;
     }
-
     if (password !== confirmPassword) {
-      Swal.fire({
-        icon: "warning",
-        title: "Password Mismatch",
-        text: "Password and Confirm Password do not match!",
-      });
-      return;
+      return Swal.fire({ icon: "warning", title: "Password Mismatch", text: "Passwords do not match!" });
     }
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        return updateProfile(user, {
-          displayName: name,
-          photoURL: photo,
-        }).then(() => {
+        return updateProfile(user, { displayName: name, photoURL: profilePic }).then(() => {
           form.reset();
-          Swal.fire({
-            icon: "success",
-            title: "Registration Successful",
-            text: `Welcome, ${name}!`,
-          });
+          setUploadedUrl("");
+          Swal.fire({ icon: "success", title: "Registration Successful", text: `Welcome, ${name}!` });
           navigate("/");
         });
       })
       .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "Registration Failed",
-          text: error.message,
-        });
+        Swal.fire({ icon: "error", title: "Registration Failed", text: error.message });
       });
   };
 
   return (
     <>
-      <Helmet>
-        <title>Knowvia | Register</title>
-      </Helmet>
+      <Helmet><title>Knowvia | Register</title></Helmet>
 
-      <div className="min-h-screen py-12 bg-base-200 flex items-center justify-center p-4">
-        <div className="w-full max-w-7xl flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div className="w-full md:w-1/3 hidden lg:flex justify-center">
-            <div className="max-w-xs md:max-w-sm lg:max-w-md w-full -scale-x-100">
-              <Lottie animationData={lottieRegister} />
-            </div>
+      <div className="min-h-screen py-12 bg-base-200 flex items-center justify-center px-4">
+        <div className="max-w-7xl w-full grid lg:grid-cols-3 items-center gap-8">
+          
+          {/* Left Lottie */}
+          <div className="hidden lg:flex justify-center">
+            <Lottie animationData={lottieRegister} className="w-full max-w-md" />
           </div>
 
+          {/* Form */}
           <Motion.div
-            className="w-full md:w-8/12 lg:w-4/12 bg-base-100 shadow-xl rounded-xl p-6 md:p-10"
+            className="col-span-1 bg-base-100 shadow-xl rounded-xl p-6 md:p-10 w-full"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2 }}
           >
             <Link
-              to={"/"}
-              className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent hover:from-purple-600 hover:via-pink-500 hover:to-violet-500"
+              to="/"
+              className="text-2xl flex items-center justify-center font-bold bg-gradient-to-r from-purple-500 via-pink-400 to-violet-400 bg-clip-text text-transparent"
             >
-              <FaRegLightbulb className="text-secondary" />
+              <FaRegLightbulb className="text-secondary mr-2" />
               Knowvia
             </Link>
-            <h1 className="text-xl font-bold mb-3 text-center">
-              Create an Account
-            </h1>
+            <h1 className="text-xl font-bold mb-3 text-center">Create an Account</h1>
+
             <form onSubmit={handleRegister} className="space-y-4">
+              {/* Name */}
               <div>
-                <label className="label font-medium">Name</label>
+                <label className="label font-medium">Full Name</label>
                 <input
-                  required
                   type="text"
                   name="name"
+                  placeholder="Your full name"
+                  required
                   className="input input-bordered w-full"
-                  placeholder="Your name"
                 />
               </div>
 
+              {/* Email */}
               <div>
-                <label className="label font-medium">Email</label>
+                <label className="label font-medium">Email Address</label>
                 <input
                   type="email"
                   name="email"
-                  className="input input-bordered w-full"
-                  placeholder="Email"
+                  placeholder="Your email"
                   required
-                />
-              </div>
-              <div>
-                <label className="label font-medium">Photo</label>
-                <input
-                  required
-                  type="url"
-                  name="photo"
                   className="input input-bordered w-full"
-                  placeholder="Photo URL"
                 />
               </div>
 
+              {/* Profile Picture */}
+              <div>
+                <label className="label font-medium">Profile Picture</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const url = await uploadImage(e.target.files[0]);
+                    if (url) setUploadedUrl(url);
+                  }}
+                  className="file-input file-input-bordered w-full"
+                />
+                {uploading && <p className="text-sm text-orange-500 mt-1">Uploading...</p>}
+                {profilePic && (
+                  <div className="mt-2 flex justify-center">
+                    <img
+                      src={profilePic}
+                      alt="Uploaded Profile"
+                      className="w-20 h-20 rounded-full border object-cover"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Password */}
               <div>
                 <label className="label font-medium">Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    className="input input-bordered w-full pr-10"
-                    placeholder="Password"
+                    placeholder="Enter password"
                     required
+                    className="input input-bordered w-full pr-10"
                   />
                   <span
                     onClick={() => setShowPassword(!showPassword)}
@@ -168,15 +159,16 @@ const Register = () => {
                 </div>
               </div>
 
+              {/* Confirm Password */}
               <div>
                 <label className="label font-medium">Confirm Password</label>
                 <div className="relative">
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     name="confirmPassword"
-                    className="input input-bordered w-full pr-10"
-                    placeholder="Confirm Password"
+                    placeholder="Confirm password"
                     required
+                    className="input input-bordered w-full pr-10"
                   />
                   <span
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -187,30 +179,31 @@ const Register = () => {
                 </div>
               </div>
 
+              {/* Submit Button */}
               <div className="mt-6">
                 <button
                   type="submit"
-                  className="w-full text-white text-sm bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 px-4 py-2 rounded transition cursor-pointer"
+                  disabled={uploading}
+                  className="w-full text-white bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 px-4 py-2 rounded text-sm"
                 >
-                  Register
+                  {uploading ? "Uploading..." : "Register"}
                 </button>
               </div>
             </form>
 
             <SocialLogIn mode="signup" />
 
-            <p className="text-center mt-4">
-              Already have an account? Please{" "}
+            <p className="text-center mt-4 text-sm">
+              Already have an account?{" "}
               <Link to="/signIn" className="text-blue-500 hover:underline">
                 Login
               </Link>
             </p>
           </Motion.div>
 
-          <div className="w-full md:w-1/3 hidden lg:flex justify-center">
-            <div className="max-w-xs md:max-w-sm lg:max-w-md w-full">
-              <Lottie animationData={lottieRegister} loop={true} />
-            </div>
+          {/* Right Lottie */}
+          <div className="hidden lg:flex justify-center">
+            <Lottie animationData={lottieRegister} className="w-full max-w-md" />
           </div>
         </div>
       </div>

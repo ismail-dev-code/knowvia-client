@@ -40,7 +40,7 @@ const Categories = () => {
   return (
     <div className="relative max-w-4xl mx-auto px-4 pt-12 mb-12 overflow-hidden rounded-xl">
       <h2 className="text-2xl font-bold text-center mb-2">
-        Explore Categories
+        Explore Our Categories
       </h2>
       <p className="text-center text-gray-500 mb-5">
         Browse through different categories to find articles that match your

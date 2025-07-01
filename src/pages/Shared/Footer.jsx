@@ -79,12 +79,12 @@ const Footer = () => {
             <ul className="space-y-1 text-sm">
               {usefulLinks.map(({ label, href }) => (
                 <li key={label}>
-                  <a
-                    href={href}
+                  <Link
+                    to={href}
                     className="hover:text-blue-600 dark:hover:text-violet-400"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
