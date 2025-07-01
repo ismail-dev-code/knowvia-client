@@ -13,6 +13,11 @@ import SingleArticle from "../components/SingleArticle";
 import Categories from "../pages/Home/Categories";
 import CategoryArticles from "../components/CategoryArticles";
 import MyProfile from "../pages/profile/MyProfile";
+import JoinAsContributor from "../pages/Footer/JoinAsContributor";
+import ModerationPolicy from "../pages/Footer/ModerationPolicy";
+import CommunityGuidelines from "../pages/Footer/CommunityGuidelines";
+import AboutKnowvia from "../pages/Footer/AboutKnowvia";
+import OurStory from "../pages/Footer/OurStory";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +31,26 @@ const router = createBrowserRouter([
       {
         path: "/allArticles",
         element: <AllArticles></AllArticles>,
+      },
+      {
+        path: "/join-as-contributor",
+        element: <JoinAsContributor />,
+      },
+      {
+        path: "/moderation-policy",
+        element: <ModerationPolicy />,
+      },
+      {
+        path: "/community-guidelines",
+        element: <CommunityGuidelines />,
+      },
+      {
+        path: "/knowvia-about",
+        element: <AboutKnowvia />,
+      },
+      {
+        path: "/our-story",
+          element: <OurStory/>
       },
       {
         path: "/myArticles",

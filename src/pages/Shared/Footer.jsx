@@ -3,17 +3,15 @@ import { FaLinkedin, FaRegLightbulb } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const usefulLinks = [
-  { label: "About Knowvia", href: "#" },
-  { label: "Who We Are", href: "#" },
-  { label: "Our Story", href: "#" },
+  { label: "About Knowvia", href: "/knowvia-about" },
+  { label: "Our Story", href: "/our-story" },
   { label: "About This Platform", href: "#" },
 ];
 
 const contributorLinks = [
-  { label: "Write an Article", href: "#" },
-  { label: "Join as Contributor", href: "#" },
-  { label: "Moderation Policy", href: "#" },
-  { label: "Community Guidelines", href: "#" },
+  { label: "Join as Contributor", href: "/join-as-contributor" },
+  { label: "Moderation Policy", href: "/moderation-policy" },
+  { label: "Community Guidelines", href: "/community-guidelines" },
 ];
 
 const policyLinks = [
@@ -68,12 +66,16 @@ const Footer = () => {
               Knowvia
             </Link>
             <p className="mt-1 text-sm dark:text-gray-400">
-              A knowledge-sharing platform where students and individuals can publish articles, exchange insights, and share content across diverse topics.
+              A knowledge-sharing platform where students and individuals can
+              publish articles, exchange insights, and share content across
+              diverse topics.
             </p>
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2 text-secondary">About Us</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">
+              About Us
+            </p>
             <ul className="space-y-1 text-sm">
               {usefulLinks.map(({ label, href }) => (
                 <li key={label}>
@@ -89,23 +91,27 @@ const Footer = () => {
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2 text-secondary">Terms & Conditions</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">
+              Terms & Conditions
+            </p>
             <ul className="space-y-1 text-sm">
               {contributorLinks.map(({ label, href }) => (
                 <li key={label}>
-                  <a
-                    href={href}
+                  <Link
+                    to={href}
                     className="hover:text-blue-600 dark:hover:text-violet-400"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="text-center md:text-left">
-            <p className="text-lg font-semibold mb-2 text-secondary">Contact Us</p>
+            <p className="text-lg font-semibold mb-2 text-secondary">
+              Contact Us
+            </p>
             <ul className="space-y-1 text-sm">
               <li>
                 Email:{" "}
