@@ -54,7 +54,7 @@ const CategoryArticles = () => {
       <Helmet>
         <title>Knowvia | Article Category</title>
       </Helmet>
-      <div className="max-w-6xl mx-auto px-4 py-6">
+      <div className="max-w-6xl mx-auto px-4 py-6 md:mb-64">
         <h2 className="text-2xl font-bold mb-6 capitalize">
           Articles in "{category}"
         </h2>

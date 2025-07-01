@@ -170,9 +170,7 @@ const PostArticle = () => {
           </div>
 
           {/* Thumbnail Upload */}
-            <p className="mb-1 font-medium overflow-hidden">
-              Thumbnail Image
-            </p>
+          <p className="mb-1 font-medium overflow-hidden">Thumbnail Image</p>
           <div className="flex flex-row ">
             <label
               htmlFor="file-upload"
@@ -181,6 +179,7 @@ const PostArticle = () => {
               Choose File
             </label>
             <input
+            required
               id="file-upload"
               type="file"
               className="px-4 w-full py-2 border border-l-0 cursor-pointer"
@@ -193,13 +192,13 @@ const PostArticle = () => {
               <p className="text-sm text-orange-500 mt-1">Uploading...</p>
             )}
           </div>
-            {formData.thumbnail && (
-              <img
-                src={formData.thumbnail}
-                alt="Thumbnail preview"
-                className="w-32 h-20 object-cover rounded mt-2 border"
-              />
-            )}
+          {formData.thumbnail && (
+            <img
+              src={formData.thumbnail}
+              alt="Thumbnail preview"
+              className="w-32 h-20 object-cover rounded mt-2 border"
+            />
+          )}
 
           {/* Author Info (disabled) */}
           <div className="text-xs space-y-2 flex-col md:flex-row flex">
@@ -212,7 +211,6 @@ const PostArticle = () => {
                 name="username"
                 value={user?.displayName}
                 disabled
-                // className="w-full border p-2 rounded bg-gray-100"
               />
             </div>
 
@@ -225,7 +223,6 @@ const PostArticle = () => {
                 name="userEmail"
                 value={user?.email}
                 disabled
-                // className="w-full border p-2 rounded bg-gray-100"
               />
             </div>
 
@@ -241,7 +238,6 @@ const PostArticle = () => {
                 value={formData.date}
                 onChange={handleChange}
                 disabled
-                // className="w-full border p-2 rounded bg-gray-100"
               />
             </div>
           </div>

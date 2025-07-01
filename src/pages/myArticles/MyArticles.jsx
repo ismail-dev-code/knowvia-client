@@ -7,6 +7,7 @@ import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import useImageUploader from "../../hooks/useImageUploader";
 
 const MyArticles = () => {
   const { user } = useContext(AuthContext);
@@ -16,8 +17,9 @@ const MyArticles = () => {
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const { uploadImage, uploading } = useImageUploader();
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
@@ -225,127 +227,175 @@ const MyArticles = () => {
           </div>
         )}
 
-        {showUpdateModal && selectedArticle && (
-          <div className="fixed inset-0 flex justify-center items-center z-50 bg-primary/10 backdrop-blur">
-            <form
-              onSubmit={handleUpdate}
-              className="p-6 rounded bg-base-100 shadow-2xl max-w-lg w-full space-y-4"
-            >
-              <h3 className="text-xl font-bold mb-2">Update Article</h3>
+       {showUpdateModal && selectedArticle && (
+  <div className="fixed inset-0 z-50 flex justify-center items-center bg-black/30 backdrop-blur-sm px-4">
+    <div className="bg-white rounded-xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
+      <form
+        onSubmit={handleUpdate}
+        className="p-6 space-y-4"
+      >
+        <h3 className="text-2xl font-bold text-gray-800 mb-4 text-center">
+          Update Article
+        </h3>
 
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                value={selectedArticle.title}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    title: e.target.value,
-                  })
+        {/* Title */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Title</label>
+          <input
+            type="text"
+            name="title"
+            value={selectedArticle.title}
+            onChange={(e) =>
+              setSelectedArticle({
+                ...selectedArticle,
+                title: e.target.value,
+              })
+            }
+            required
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        {/* Content */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Content</label>
+          <textarea
+            name="content"
+            value={selectedArticle.content}
+            onChange={(e) =>
+              setSelectedArticle({
+                ...selectedArticle,
+                content: e.target.value,
+              })
+            }
+            required
+            className="w-full border p-2 rounded h-32 resize-none leading-relaxed focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        {/* Category */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Category</label>
+          <select
+            name="category"
+            value={selectedArticle.category}
+            onChange={(e) =>
+              setSelectedArticle({
+                ...selectedArticle,
+                category: e.target.value,
+              })
+            }
+            required
+            className="w-full border p-2 rounded text-gray-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-500"
+          >
+            <option value="">Select Category</option>
+            <option value="Tech">Tech</option>
+            <option value="Education">Education</option>
+            <option value="Health">Health</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Business">Business</option>
+            <option value="Environment">Environment</option>
+            <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+          </select>
+        </div>
+
+        {/* Tags */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Tags</label>
+          <input
+            type="text"
+            name="tags"
+            placeholder="Comma separated"
+            value={selectedArticle.tags?.join(", ") || ""}
+            onChange={(e) =>
+              setSelectedArticle({
+                ...selectedArticle,
+                tags: e.target.value.split(",").map((tag) => tag.trim()),
+              })
+            }
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+        </div>
+
+        {/* Thumbnail Upload */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">Thumbnail Image</label>
+          <label className="flex items-center gap-2 bg-gray-800 text-white px-4 py-2 rounded cursor-pointer hover:bg-gray-700 w-fit">
+            Upload Image
+            <input
+              type="file"
+              onChange={async (e) => {
+                const url = await uploadImage(e.target.files[0]);
+                if (url) {
+                  setSelectedArticle((prev) => ({ ...prev, thumbnail: url }));
                 }
-                required
-                className="w-full border p-2 rounded"
+              }}
+              className="hidden"
+            />
+          </label>
+          {uploading && <p className="text-sm text-orange-500 mt-1">Uploading...</p>}
+          {selectedArticle.thumbnail && (
+            <div className="relative inline-block mt-3">
+              <img
+                src={selectedArticle.thumbnail}
+                alt="Thumbnail"
+                className="w-32 h-20 object-cover border rounded"
               />
-
-              <textarea
-                name="content"
-                placeholder="Content"
-                value={selectedArticle.content}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    content: e.target.value,
-                  })
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedArticle((prev) => ({ ...prev, thumbnail: "" }))
                 }
-                required
-                className="w-full border p-2 rounded h-32 whitespace-normal break-words text-base leading-relaxed"
-              />
-
-              <select
-                name="category"
-                value={selectedArticle.category}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    category: e.target.value,
-                  })
-                }
-                required
-                className="w-full border p-2 rounded text-gray-500 cursor-pointer"
+                className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-700"
               >
-                <option value="">Select Category</option>
-                <option value="Tech">Tech</option>
-                <option value="Education">Education</option>
-                <option value="Health">Health</option>
-                <option value="Lifestyle">Lifestyle</option>
-                <option value="Business">Business</option>
-                <option value="Environment">Environment</option>
-                <option value="Science">Science</option>
-                <option value="Arts">Arts</option>
-              </select>
+                ✕
+              </button>
+            </div>
+          )}
+        </div>
 
-              <input
-                type="text"
-                name="tags"
-                placeholder="Tags (comma separated)"
-                value={selectedArticle.tags?.join(", ") || ""}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    tags: e.target.value.split(",").map((tag) => tag.trim()),
-                  })
-                }
-                className="w-full border p-2 rounded"
-              />
+        {/* Date (Disabled) */}
+        <div>
+          <label className="block mb-1 font-medium text-gray-700">
+            Publication Date
+          </label>
+          <input
+            type="date"
+            name="date"
+            value={selectedArticle.date}
+            onChange={(e) =>
+              setSelectedArticle({
+                ...selectedArticle,
+                date: e.target.value,
+              })
+            }
+            className="w-full border p-2 rounded bg-gray-100 text-gray-500 cursor-not-allowed"
+            disabled
+          />
+        </div>
 
-              <input
-                type="url"
-                name="thumbnail"
-                placeholder="Image URL"
-                value={selectedArticle.thumbnail || ""}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    thumbnail: e.target.value,
-                  })
-                }
-                required
-                className="w-full border p-2 rounded"
-              />
+        {/* Buttons */}
+        <div className="flex justify-end gap-2 pt-4">
+          <button
+            type="button"
+            onClick={() => setShowUpdateModal(false)}
+            className="px-4 py-2 border cursor-pointer rounded hover:bg-gray-100"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="bg-green-600 cursor-pointer text-white px-4 py-2 rounded hover:bg-green-700"
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+)}
 
-              <input
-                type="date"
-                name="date"
-                value={selectedArticle.date}
-                onChange={(e) =>
-                  setSelectedArticle({
-                    ...selectedArticle,
-                    date: e.target.value,
-                  })
-                }
-                className="w-full border p-2 rounded"
-                disabled
-              />
-
-              <div className="flex justify-end gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowUpdateModal(false)}
-                  className="px-4 py-2 border rounded cursor-pointer"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-green-600 text-white px-4 py-2 cursor-pointer rounded hover:bg-green-700"
-                >
-                  Save Changes
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
 
         {showDeleteModal && (
           <div className="fixed inset-0 flex justify-center items-center z-50 bg-black/20 backdrop-blur">
