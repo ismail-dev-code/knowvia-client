@@ -19,6 +19,8 @@ import CommunityGuidelines from "../pages/Footer/CommunityGuidelines";
 import AboutKnowvia from "../pages/Footer/AboutKnowvia";
 import OurStory from "../pages/Footer/OurStory";
 import AboutPlatform from "../pages/Footer/AboutPlatform";
+import PrivacyPolicy from "../pages/Footer/PrivacyPolicy";
+import TermsOfUse from "../pages/Footer/TermsOfUse";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
       {
         path: "/about-platform",
         element: <AboutPlatform />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/terms-of-use",
+        element: <TermsOfUse />,
       },
       {
         path: "/myArticles",
