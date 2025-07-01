@@ -9,6 +9,7 @@ const AllArticles = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("latest");
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -31,7 +32,27 @@ const AllArticles = () => {
           withCredentials: true,
         });
 
-        setArticles(res.data);
+        let sortedArticles = res.data;
+
+        if (sort === "latest") {
+          sortedArticles = sortedArticles.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          );
+        } else if (sort === "oldest") {
+          sortedArticles = sortedArticles.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+        } else if (sort === "az") {
+          sortedArticles = sortedArticles.sort((a, b) =>
+            a.title.localeCompare(b.title)
+          );
+        } else if (sort === "za") {
+          sortedArticles = sortedArticles.sort((a, b) =>
+            b.title.localeCompare(a.title)
+          );
+        }
+
+        setArticles(sortedArticles);
       } catch (err) {
         console.error("Error fetching articles:", err);
       } finally {
@@ -40,7 +61,7 @@ const AllArticles = () => {
     };
 
     fetchArticles();
-  }, [category]);
+  }, [category, sort]);
 
   if (loading)
     return (
@@ -67,7 +88,8 @@ const AllArticles = () => {
       <div className="max-w-6xl mx-auto p-6 mb-18 md:mb-32">
         <h2 className="text-3xl font-bold mb-8 text-center">All Articles</h2>
 
-        <div className="flex justify-center mb-6">
+        {/* Filters */}
+        <div className="flex flex-wrap justify-center gap-4 mb-6">
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
@@ -83,67 +105,80 @@ const AllArticles = () => {
             <option value="science">Science</option>
             <option value="arts">Arts</option>
           </select>
+
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="select select-bordered w-full max-w-xs cursor-pointer"
+          >
+            <option value="latest">Sort by: Latest</option>
+            <option value="oldest">Sort by: Oldest</option>
+            <option value="az">Sort by: Title A-Z</option>
+            <option value="za">Sort by: Title Z-A</option>
+          </select>
         </div>
 
         {articles.length === 0 ? (
           <p className="text-center my-24">No articles found.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {articles.map((article, index) => (
               <motion.div
                 key={article._id}
-                className="p-4 rounded-xl shadow-2xl transition flex flex-col justify-between h-full min-h-[420px]"
+                className="bg-white p-5 rounded-2xl shadow-md transition-all duration-300 flex flex-col justify-between h-full min-h-[420px]"
                 custom={index}
                 variants={cardVariants}
                 initial="hidden"
                 animate="visible"
               >
-                <div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    className="overflow-hidden rounded mb-3"
-                  >
-                    <img
-                      src={article.thumbnail}
-                      alt={article.title}
-                      className="w-full h-40 object-cover transition-transform duration-300"
-                    />
-                  </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.03 }}
+                  className="overflow-hidden rounded-xl mb-2"
+                >
+                  <img
+                    src={article.thumbnail}
+                    alt={article.title}
+                    className="w-full h-40 object-cover rounded-xl transition-transform duration-300"
+                  />
+                </motion.div>
 
-                  <h3 className="text-xl font-semibold mb-1 capitalize">
-                    {article.title}
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold leading-snug capitalize text-gray-800">
+                    {article.title.split(" ").length > 12
+                      ? `${article.title.split(" ").slice(0, 12).join(" ")}...`
+                      : article.title}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-1">
+
+                  <p className="text-sm text-gray-500 mb-0.5">
                     By{" "}
-                    <span className="font-medium capitalize">
+                    <span className="font-medium capitalize text-gray-700">
                       {article?.username || article?.photoURL}
                     </span>
                   </p>
-                  <p className="text-xs text-gray-400 mb-2">
+                  <p className="text-xs text-gray-400 mb-1">
                     Published on: {article.date}
                   </p>
-                  <p className="text-gray-700 mb-3">
+
+                  <p className="text-sm text-gray-700 mb-2 leading-relaxed">
                     {article.content.length > 100
-                      ? `${article.content.slice(0, 100)}...`
+                      ? `${article.content.slice(0, 60)}...`
                       : article.content}
                   </p>
                 </div>
 
-                <div className="mt-auto">
-                  <Link to={`/articles/${article._id}`}>
-                    <motion.button
-                      className="btn btn-secondary"
-                      whileHover={{
-                        scale: 1.1,
-                        backgroundColor: "#2563eb",
-                        color: "#fff",
-                      }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      Read More
-                    </motion.button>
-                  </Link>
-                </div>
+                <Link to={`/articles/${article._id}`} className="mt-auto">
+                  <motion.button
+                    className="btn btn-secondary btn-sm hover:border-none"
+                    whileHover={{
+                      scale: 1.1,
+                      backgroundColor: "#2563eb",
+                      color: "#fff",
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    Read More
+                  </motion.button>
+                </Link>
               </motion.div>
             ))}
           </div>

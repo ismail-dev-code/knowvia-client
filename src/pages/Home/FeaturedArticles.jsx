@@ -24,7 +24,7 @@ const FeaturedArticles = () => {
         const articles = res.data;
         const sorted = articles
           .sort((a, b) => new Date(b.date) - new Date(a.date))
-          .slice(0, 6);
+          .slice(0, 8);
         setFeaturedArticles(sorted);
       } catch (error) {
         console.error("Error fetching featured articles:", error);
@@ -75,48 +75,55 @@ const FeaturedArticles = () => {
     >
       <h2 className="text-2xl font-bold text-center pb-2">Featured Articles</h2>
       <p className="text-center mx-auto max-w-xl mb-8 text-gray-400">
-        Stay ahead with our top six featured articles—covering the most
+        Stay ahead with our top eight featured articles—covering the most
         talked-about topics, latest trends, and must-read stories.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {featuredArticles.map((article, index) => (
-          <motion.div
-            key={article._id}
-            className="p-4 rounded-xl shadow-xl transition flex flex-col justify-between h-full min-h-[400px]"
-            custom={index}
-            variants={cardVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="overflow-hidden rounded mb-3"
-            >
-              <img
-                src={article.thumbnail}
-                alt={article.title}
-                className="w-full h-40 object-cover rounded mb-3"
-              />
-            </motion.div>
-            <h3 className="text-xl font-semibold mb-1 capitalize">
-              {article.title}
-            </h3>
-            <p className="text-sm text-gray-600 mb-1">
-              By{" "}
-              <span className="font-medium capitalize">{article.username}</span>
-            </p>
-            <p className="text-xs text-gray-400 mb-2">
-              Published on: {article.date}
-            </p>
-            <p className="text-gray-700 mb-3">
-              {article.content.length > 100
-                ? `${article.content.slice(0, 100)}...`
-                : article.content}
-            </p>
-            <Link to={`/articles/${article._id}`}>
-              <motion.button
-                className="btn btn-secondary hover:border-none"
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+  {featuredArticles.map((article, index) => (
+    <motion.div
+      key={article._id}
+      className="bg-white p-5 rounded-2xl shadow-md  transition-all duration-300 flex flex-col justify-between h-full min-h-[420px]"
+      custom={index}
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div
+        whileHover={{ scale: 1.03 }}
+        className="overflow-hidden rounded-xl mb-2"
+      >
+        <img
+          src={article.thumbnail}
+          alt={article.title}
+          className="w-full h-40 object-cover rounded-xl transition-transform duration-300"
+        />
+      </motion.div>
+
+      <div className="flex-1">
+        <h3 className="text-lg font-semibold leading-snug capitalize text-gray-800">
+          {article.title.split(" ").length > 12
+            ? `${article.title.split(" ").slice(0, 12).join(" ")}...`
+            : article.title}
+        </h3>
+
+        <p className="text-sm text-gray-500 mb-0.5">
+          By <span className="font-medium capitalize text-gray-700">{article.username}</span>
+        </p>
+        <p className="text-xs text-gray-400 mb-1">
+          Published on: {article.date}
+        </p>
+
+        <p className="text-sm text-gray-700 mb-2 leading-relaxed">
+          {article.content.length > 100
+            ? `${article.content.slice(0, 60)}...`
+            : article.content}
+        </p>
+      </div>
+
+      <Link to={`/articles/${article._id}`} className="mt-auto">
+        <motion.button
+                className="btn btn-secondary btn-sm hover:border-none"
                 whileHover={{
                   scale: 1.1,
                   backgroundColor: "#2563eb",
@@ -126,12 +133,15 @@ const FeaturedArticles = () => {
               >
                 Read More
               </motion.button>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+      </Link>
+    </motion.div>
+  ))}
+</div>
     </motion.div>
   );
 };
 
 export default FeaturedArticles;
+
+
+  
