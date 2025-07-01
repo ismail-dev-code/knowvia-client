@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         axios
           .post(
-            "https://knowvia-server.vercel.app/jwt",
+            "http://localhost:3000/jwt",
             {
               email: currentUser?.email,
             },

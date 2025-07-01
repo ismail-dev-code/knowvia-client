@@ -21,7 +21,7 @@ const SingleArticle = () => {
 
   useEffect(() => {
     axios
-      .get(`https://knowvia-server.vercel.app/articles/${id}`)
+      .get(`http://localhost:3000/articles/${id}`)
       .then((res) => {
         setArticle(res.data);
         setLoading(false);
@@ -59,7 +59,7 @@ const SingleArticle = () => {
     }
 
     axios
-      .patch(`https://knowvia-server.vercel.app/like/${id}`, {
+      .patch(`http://localhost:3000/like/${id}`, {
         email: user?.email,
       })
       .then((res) => {

@@ -67,7 +67,7 @@ This project was built as part of the [Programming Hero Web Development](https:/
 
 ## 📚 API Endpoints
 
-All endpoints start with: `https://knowvia-server.vercel.app`
+All endpoints start with: `http://localhost:3000`
 
 ### 🔐 Authentication
 | Method | Endpoint      | Description                          |

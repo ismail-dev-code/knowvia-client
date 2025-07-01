@@ -18,7 +18,7 @@ const Comment = ({ comment, articleId, onCommentPosted }) => {
     if (!replyText.trim()) return;
 
     try {
-      await axios.post(`https://knowvia-server.vercel.app/articles/${articleId}/comments`, {
+      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, {
         user_id: user.id,
         user_name: user.displayName,
         user_photo: user.photoURL,
@@ -122,7 +122,7 @@ const PostComment = ({ articleId, onCommentPosted }) => {
     if (!commentText.trim()) return;
 
     try {
-      await axios.post(`https://knowvia-server.vercel.app/articles/${articleId}/comments`, {
+      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, {
         user_id: user.id,
         user_name: user.displayName,
         user_photo: user.photoURL,
@@ -162,7 +162,7 @@ const CommentsSection = ({ articleId }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`https://knowvia-server.vercel.app/comments/${articleId}`);
+      const res = await axios.get(`http://localhost:3000/comments/${articleId}`);
       setComments(res.data);
     } catch (error) {
       console.error("Failed to load comments", error);
