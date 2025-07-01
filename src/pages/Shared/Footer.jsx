@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const usefulLinks = [
   { label: "About Knowvia", href: "/knowvia-about" },
   { label: "Our Story", href: "/our-story" },
-  { label: "About This Platform", href: "#" },
+  { label: "About This Platform", href: "/about-platform" },
 ];
 
 const contributorLinks = [
