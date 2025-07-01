@@ -30,7 +30,7 @@ const NavBar = () => {
       if (!token) return;
 
       try {
-        const res = await fetch("http://localhost:3000/notifications/counts", {
+        const res = await fetch("https://knowvia-server.vercel.app/notifications/counts", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

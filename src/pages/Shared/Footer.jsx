@@ -143,13 +143,13 @@ const Footer = () => {
 
           <div className="flex gap-4">
             {policyLinks.map(({ label, href }) => (
-              <a
+              <Link
                 key={label}
-                href={href}
+                to={href}
                 className="hover:text-blue-600 dark:hover:text-violet-400"
               >
                 {label}
-              </a>
+              </Link>
             ))}
           </div>
 

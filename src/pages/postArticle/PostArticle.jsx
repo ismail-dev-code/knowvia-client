@@ -43,7 +43,7 @@ const PostArticle = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "http://localhost:3000/articles",
+        "https://knowvia-server.vercel.app/articles",
         article,
         {
           headers: { Authorization: `Bearer ${token}` },
