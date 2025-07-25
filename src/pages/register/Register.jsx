@@ -61,7 +61,7 @@ const Register = () => {
         text: "Passwords do not match!",
       });
     }
-
+// creating user here
     createUser(email, password)
       .then((result) => {
         const user = result.user;
