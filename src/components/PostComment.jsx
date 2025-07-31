@@ -22,7 +22,7 @@ const PostComment = ({ articleId, onCommentPosted, parentId = null }) => {
 
     try {
       setPosting(true);
-      await axios.post(`http://localhost:3000/articles/${articleId}/comments`, newComment);
+      await axios.post(`https://knowvia-server.vercel.app/articles/${articleId}/comments`, newComment);
       setComment("");
       onCommentPosted();
     } catch (error) {

@@ -20,8 +20,8 @@ const AllArticles = () => {
       setLoading(true);
       try {
         const url = category
-          ? `http://localhost:3000/articles?category=${category}`
-          : "http://localhost:3000/articles";
+          ? `https://knowvia-server.vercel.app/articles?category=${category}`
+          : "https://knowvia-server.vercel.app/articles";
 
         const token = localStorage.getItem("token");
 

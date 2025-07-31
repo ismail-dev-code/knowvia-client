@@ -14,7 +14,7 @@ const Categories = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("http://localhost:3000/articles", {
+        const res = await axios.get("https://knowvia-server.vercel.app/articles", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
