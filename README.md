@@ -1,17 +1,21 @@
 
 # 🌐 Knowvia – Knowledge Sharing Platform
 
-**Knowvia** is a full-stack MERN (MongoDB, Express.js, React, Node.js) web application designed to allow users to publish, edit, and manage articles — encouraging a culture of knowledge sharing.
+**Knowvia** is an advanced full-stack web application built using the MERN stack — MongoDB for database management, Express.js for backend routing and APIs, React for a dynamic and responsive frontend user interface, and Node.js as the server environment. This platform is meticulously designed to empower users to publish, edit, and manage a wide range of articles, creating a thriving community centered around knowledge sharing and collaboration.
 
-This project was built as part of the [Programming Hero Web Development](https://github.com/ProgrammingHero1) and demonstrates a complete CRUD application using modern frontend and backend technologies.
+Through Knowvia, users can easily contribute their expertise, explore diverse topics, and engage with high-quality content curated by the community. The application fosters an interactive environment where knowledge exchange is seamless, intuitive, and secure. Its user-centric design ensures that contributors have full control over their content lifecycle — from drafting and updating articles to managing comments and receiving feedback.
+
+Moreover, Knowvia implements modern web technologies and best practices to guarantee fast performance, scalability, and robust security, making it an ideal platform for both casual writers and professional content creators seeking to share their insights with a wider audience.
+
+
 
 ---
 
 ## 🔗 Live & Source Links
 
 - 🔴 **Live Site (Frontend):** [Knowvia Live](https://knowvia-bd.web.app)
-- 🟢 **Source Code (Frontend):** [GitHub Repo - Client](https://github.com/Programming-Hero-Web-Course4/b11a11-client-side-ismail-dev-code)
-- ⚙️ **Source Code (Backend):** [GitHub Repo - Server](https://github.com/Programming-Hero-Web-Course4/b11a11-server-side-ismail-dev-code)
+- 🟢 **Source Code (Frontend):** [GitHub Repo - Client](https://github.com/ismail-dev-code/knowvia-client)
+- ⚙️ **Source Code (Backend):** [GitHub Repo - Server](https://github.com/ismail-dev-code/knowvia-server)
 
 ---
 
@@ -111,17 +115,7 @@ All endpoints start with: `https://knowvia-server.vercel.app`
 
 ---
 
-## 🧪  `.env` (Backend)
 
-```env
-PORT=5000
-DB_USER=your_db_username
-DB_PASS=your_db_password
-JWT_SECRET_KEY=your_secret
-
---- 
-
-```
 
 ## 📫 Contact
 
