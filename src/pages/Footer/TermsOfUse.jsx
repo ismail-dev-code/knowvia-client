@@ -12,53 +12,69 @@ const TermsOfUse = () => {
         <title>Knowvia | Terms of Use</title>
       </Helmet>
 
-      <h1 className="text-3xl font-bold text-secondary mb-4 text-center">
+      <h1 className="md:text-3xl text-xl font-bold text-secondary mb-4">
         Terms of Use
       </h1>
-      <p className="text-sm text-gray-600 mb-6 text-center max-w-3xl mx-auto">
-        These terms govern your use of the Knowvia platform. By using our services, you agree to these terms.
+      <p className="text-sm text-gray-600 mb-8 max-w-3xl">
+        Welcome to Knowvia. These Terms of Use (“Terms”) govern your access to and
+        use of our platform, including all content, features, and services
+        provided. By using Knowvia, you agree to comply with and be bound by
+        these Terms.
       </p>
 
-      <section className="space-y-6 text-sm leading-relaxed">
+      <section className="space-y-8 text-sm leading-relaxed text-gray-800">
         <div>
           <h2 className="text-lg font-semibold text-primary mb-2">1. Eligibility</h2>
-          <p>
-            Knowvia is open to all learners and knowledge seekers, regardless of age. We welcome students, educators, and curious minds to participate. 
-            However, all users must use the platform responsibly and follow our community guidelines and terms of use. 
-            Any misuse, harmful behavior, or violation of platform rules may result in restricted access or account termination.
+          <p className="text-gray-600">
+            Knowvia is open to learners and knowledge seekers of all ages. We
+            encourage students, educators, and curious minds to participate.
+            Users are expected to use the platform responsibly and in compliance
+            with our community guidelines. Misuse, harmful behavior, or
+            violations of these Terms may result in restricted access or
+            account termination.
           </p>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold text-primary mb-2">2. Content Ownership</h2>
-          <p>
-            You retain rights to the content you publish. By uploading content, you grant Knowvia permission to display and distribute it
-            on our platform and associated promotional materials.
+          <p className="text-gray-600">
+            You retain all rights to the content you publish on Knowvia. By
+            uploading content, you grant us a non-exclusive, royalty-free license
+            to display, distribute, and promote it within the platform and in
+            related marketing materials.
           </p>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold text-primary mb-2">3. User Conduct</h2>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Do not post harmful, abusive, or misleading content.</li>
-            <li>Respect other users and maintain civil discourse.</li>
-            <li>Do not attempt to hack, spam, or disrupt the platform.</li>
+          <p className="mb-2 text-gray-600">
+            All users must interact respectfully and refrain from harmful or
+            disruptive activities. Specifically, you agree to:
+          </p>
+          <ul className="list-disc list-inside space-y-1 text-gray-600">
+            <li>Not post harmful, abusive, or misleading content.</li>
+            <li>Respect other users and maintain constructive dialogue.</li>
+            <li>Avoid hacking, spamming, or attempting to disrupt the platform.</li>
           </ul>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold text-primary mb-2">4. Termination</h2>
-          <p>
-            We may suspend or remove accounts that violate these terms, our guidelines, or engage in harmful behavior. 
-            This is to ensure a safe and welcoming environment for all users.
+          <p className="text-gray-600">
+            We reserve the right to suspend or terminate accounts that violate
+            these Terms or engage in harmful activities. This ensures a safe,
+            respectful, and welcoming environment for all members of the
+            community.
           </p>
         </div>
 
         <div>
           <h2 className="text-lg font-semibold text-primary mb-2">5. Changes to Terms</h2>
-          <p>
-            Knowvia may update these terms from time to time. We will notify users of major changes. 
-            Continued use of the platform after updates implies your acceptance of the revised terms.
+          <p className="text-gray-600">
+            Knowvia may update these Terms periodically. In the event of
+            significant changes, we will notify users. Continued use of the
+            platform after updates constitutes your acceptance of the revised
+            Terms.
           </p>
         </div>
       </section>

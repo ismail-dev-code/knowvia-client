@@ -93,19 +93,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/articles/category/:category",
-        element: (
-          <PrivateRoute>
-            <CategoryArticles />
-          </PrivateRoute>
-        ),
+        element: <CategoryArticles />,
       },
       {
         path: "/articles/category/:categoryName",
-        element: (
-          <PrivateRoute>
-            <Categories />
-          </PrivateRoute>
-        ),
+        element: <Categories />,
       },
       {
         path: "/articles/:id",

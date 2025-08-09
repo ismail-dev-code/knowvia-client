@@ -14,12 +14,15 @@ const FeaturedArticles = () => {
       try {
         const token = localStorage.getItem("token");
 
-        const res = await axios.get("https://knowvia-server.vercel.app/articles", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        });
+        const res = await axios.get(
+          "https://knowvia-server.vercel.app/articles",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        );
 
         const articles = res.data;
         const sorted = articles
@@ -80,49 +83,52 @@ const FeaturedArticles = () => {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-  {featuredArticles.map((article, index) => (
-    <motion.div
-      key={article._id}
-      className="bg-white p-5 rounded-2xl shadow-md  transition-all duration-300 flex flex-col justify-between h-full min-h-[420px]"
-      custom={index}
-      variants={cardVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <motion.div
-        whileHover={{ scale: 1.03 }}
-        className="overflow-hidden rounded-xl mb-2"
-      >
-        <img
-          src={article.thumbnail}
-          alt={article.title}
-          className="w-full h-40 object-cover rounded-xl transition-transform duration-300"
-        />
-      </motion.div>
+        {featuredArticles.map((article, index) => (
+          <motion.div
+            key={article._id}
+            className="bg-white p-5 rounded-2xl shadow-md  transition-all duration-300 flex flex-col justify-between h-full min-h-[420px]"
+            custom={index}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              className="overflow-hidden rounded-xl mb-2"
+            >
+              <img
+                src={article.thumbnail}
+                alt={article.title}
+                className="w-full h-40 object-cover rounded-xl transition-transform duration-300"
+              />
+            </motion.div>
 
-      <div className="flex-1">
-        <h3 className="text-lg font-semibold leading-snug capitalize text-gray-800">
-          {article.title.split(" ").length > 9
-            ? `${article.title.split(" ").slice(0, 9).join(" ")}...`
-            : article.title}
-        </h3>
+            <div className="flex-1">
+              <h3 className="text-lg font-semibold leading-snug capitalize text-gray-800">
+                {article.title.split(" ").length > 9
+                  ? `${article.title.split(" ").slice(0, 9).join(" ")}...`
+                  : article.title}
+              </h3>
 
-        <p className="text-sm text-gray-500 mb-0.5">
-          By <span className="font-medium capitalize text-gray-700">{article.username}</span>
-        </p>
-        <p className="text-xs text-gray-400 mb-1">
-          Published on: {article.date}
-        </p>
+              <p className="text-sm text-gray-500 mb-0.5">
+                By{" "}
+                <span className="font-medium capitalize text-gray-700">
+                  {article.username}
+                </span>
+              </p>
+              <p className="text-xs text-gray-400 mb-1">
+                Published on: {article.date}
+              </p>
 
-        <p className="text-sm text-gray-700 mb-2 leading-relaxed">
-          {article.content.length > 100
-            ? `${article.content.slice(0, 60)}...`
-            : article.content}
-        </p>
-      </div>
+              <p className="text-sm text-gray-700 mb-2 leading-relaxed">
+                {article.content.length > 100
+                  ? `${article.content.slice(0, 60)}...`
+                  : article.content}
+              </p>
+            </div>
 
-      <Link to={`/articles/${article._id}`} className="mt-auto">
-        <motion.button
+            <Link to={`/articles/${article._id}`} className="mt-auto">
+              <motion.button
                 className="btn btn-secondary btn-sm hover:border-none"
                 whileHover={{
                   scale: 1.1,
@@ -133,15 +139,12 @@ const FeaturedArticles = () => {
               >
                 Read More
               </motion.button>
-      </Link>
-    </motion.div>
-  ))}
-</div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 };
 
 export default FeaturedArticles;
-
-
-  
