@@ -14,7 +14,7 @@ const JoinAsContributor = () => {
       </Helmet>
 
       <div className="mb-10 text-left">
-        <h1 className="text-3xl font-bold text-secondary mb-4">
+        <h1 className="md:text-3xl text-xl font-bold text-secondary mb-4">
           Join as a Contributor
         </h1>
         <p className="text-gray-600 dark:text-gray-300 max-w-3xl">

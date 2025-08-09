@@ -13,70 +13,99 @@ const ModerationPolicy = () => {
         <title>Knowvia | Moderation Policy</title>
       </Helmet>
 
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-secondary mb-2">
+      <div className="mb-10 text-left">
+        <h1 className="text-xl md:text-3xl font-bold text-secondary mb-4">
           Moderation Policy
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-          At Knowvia, we strive to maintain a respectful, informative, and safe environment for all users.
-          Our moderation policy ensures content integrity and a positive user experience.
+        <p className="text-gray-600 dark:text-gray-300 max-w-3xl">
+          At Knowvia, we are committed to fostering a respectful, informative,
+          and safe environment for all users. This moderation policy outlines
+          our review process, community expectations, and the actions we take to
+          ensure content integrity and a positive experience for everyone.
         </p>
       </div>
 
-      <section className="space-y-8 text-sm leading-relaxed">
+      <section className="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">1. Content Review Process</h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            1. Content Review Process
+          </h2>
           <p>
-            All submitted articles go through a manual review by our moderation team before being published. We assess the content for quality, relevance, and adherence to community guidelines.
+            All submitted articles undergo a manual review by our moderation
+            team before publication. We assess submissions for quality,
+            relevance, originality, and compliance with our community
+            guidelines.
           </p>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">2. Grounds for Rejection</h2>
-          <ul className="list-disc list-inside space-y-1">
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            2. Grounds for Rejection
+          </h2>
+          <ul className="list-disc pl-6 space-y-1">
             <li>Plagiarized or duplicate content</li>
-            <li>Inaccurate or misleading information</li>
+            <li>Factually inaccurate or misleading information</li>
             <li>Hateful, discriminatory, or violent language</li>
-            <li>Promotion of illegal activities or harmful behavior</li>
-            <li>Spammy or overly promotional content</li>
+            <li>Promotion of illegal or harmful activities</li>
+            <li>Excessively promotional or spam content</li>
           </ul>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">3. Community Conduct</h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            3. Community Conduct
+          </h2>
           <p>
-            Contributors and users must maintain respectful behavior in comments, messages, and any interactions within the platform. Harassment or abuse will not be tolerated.
+            All contributors and users are expected to engage respectfully in
+            comments, messages, and any platform interactions. Harassment,
+            abuse, or targeted attacks will not be tolerated under any
+            circumstances.
           </p>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">4. Reporting Violations</h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            4. Reporting Violations
+          </h2>
           <p>
-            Users can report content or behavior that violates our policies via the report feature or by contacting us directly. Our team investigates all reports promptly and fairly.
+            Users may report policy violations using our in-platform reporting
+            feature or by contacting our support team directly. Every report is
+            reviewed promptly, fairly, and confidentially.
           </p>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">5. Actions We May Take</h2>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Content removal or edits</li>
-            <li>Warnings to the contributor</li>
-            <li>Temporary or permanent account suspension</li>
-            <li>Limiting specific features for misuse</li>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            5. Actions We May Take
+          </h2>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Removing or editing content</li>
+            <li>Issuing warnings to contributors</li>
+            <li>Temporarily or permanently suspending accounts</li>
+            <li>Restricting access to specific platform features</li>
           </ul>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">6. Appeal Process</h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            6. Appeal Process
+          </h2>
           <p>
-            Contributors who disagree with a moderation decision may contact our support team with a detailed explanation. We review appeals on a case-by-case basis.
+            Contributors who disagree with a moderation decision may submit an
+            appeal by contacting our support team with a detailed explanation.
+            Appeals are reviewed individually, and final decisions are
+            communicated in writing.
           </p>
         </div>
 
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">7. Policy Updates</h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            7. Policy Updates
+          </h2>
           <p>
-            This policy may be updated from time to time to reflect platform growth and evolving community standards. Users will be notified of major changes.
+            This policy is subject to periodic updates to reflect platform
+            growth, industry best practices, and evolving community standards.
+            Users will be notified in advance of any major changes.
           </p>
         </div>
       </section>
