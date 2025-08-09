@@ -13,7 +13,9 @@ import {
 import { auth } from "../../firebase/firebase.config";
 import axios from "axios";
 import { toast } from "react-toastify";
+
 const provider = new GoogleAuthProvider();
+
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -31,16 +33,16 @@ const AuthProvider = ({ children }) => {
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
- const signInWithGoogle = async () => {
-  setLoading(true);
-  try {
-    const result = await signInWithPopup(auth, provider);
-    setUser(result.user); 
-    return result;
-  } finally {
-    setLoading(false);
-  }
-};
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      setUser(result.user);
+      return result;
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const updateUser = (updatedData) => {
     return updateProfile(auth.currentUser, updatedData);

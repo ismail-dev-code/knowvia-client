@@ -23,13 +23,13 @@ const socialLinks = [
   {
     icon: <FaYoutube size={25} />,
     title: "YouTube",
-    href: "https://github.com/ismail-dev-code",
+    href: "https://youtube.com/knowvia",
     target: "_blank",
   },
   {
     icon: <FaTwitter size={25} />,
     title: "Twitter",
-    href: "https://github.com/ismail-dev-code",
+    href: "https://twitter.com/knowvia",
     target: "_blank",
   },
   {
