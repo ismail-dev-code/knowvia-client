@@ -31,9 +31,17 @@ const AuthProvider = ({ children }) => {
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
-  const signInWithGoogle = () => {
-    return signInWithPopup(auth, provider);
-  };
+ const signInWithGoogle = async () => {
+  setLoading(true);
+  try {
+    const result = await signInWithPopup(auth, provider);
+    setUser(result.user); 
+    return result;
+  } finally {
+    setLoading(false);
+  }
+};
+
   const updateUser = (updatedData) => {
     return updateProfile(auth.currentUser, updatedData);
   };
