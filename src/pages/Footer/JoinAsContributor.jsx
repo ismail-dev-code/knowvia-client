@@ -6,32 +6,32 @@ const JoinAsContributor = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
       <Helmet>
         <title>Knowvia | Join as Contributor</title>
       </Helmet>
 
-      <div className="mb-10 text-center">
-        <h1 className="text-3xl font-bold text-secondary mb-2">
-          Join as Contributor
+      <div className="mb-10 text-left">
+        <h1 className="text-3xl font-bold text-secondary mb-4">
+          Join as a Contributor
         </h1>
-        <p className="text-gray-500 dark:text-gray-400 max-w-3xl mx-auto">
-          We're thrilled to have you consider contributing to Knowvia. Please
-          review the guidelines and terms below before becoming a contributor.
+        <p className="text-gray-600 dark:text-gray-300 max-w-3xl">
+          We are excited to welcome you to the Knowvia contributor community.
+          Please take a moment to review the guidelines and terms below before
+          applying to become a contributor.
         </p>
       </div>
 
-      <section className="space-y-8 text-sm leading-relaxed">
+      <section className="space-y-8 text-base leading-relaxed text-gray-700 dark:text-gray-300">
         <div>
-          <h2 className="text-lg font-semibold text-primary mb-2">
-            1. Purpose
-          </h2>
+          <h2 className="text-lg font-semibold text-primary mb-2">1. Purpose</h2>
           <p>
-            Knowvia is a community-driven platform for sharing knowledge,
-            insights, and real-world experiences through high-quality articles.
-            As a contributor, your role is to share meaningful, original content
-            that adds value to our audience.
+            Knowvia is a community-driven platform dedicated to sharing
+            knowledge, insights, and real-world experiences through
+            high-quality articles. As a contributor, your role is to create
+            meaningful, original content that provides value to our readers.
           </p>
         </div>
 
@@ -39,21 +39,16 @@ const JoinAsContributor = () => {
           <h2 className="text-lg font-semibold text-primary mb-2">
             2. Contributor Guidelines
           </h2>
-          <ul className="list-disc list-inside space-y-1">
+          <ul className="list-disc pl-6 space-y-1">
             <li>Submit only original, plagiarism-free content.</li>
+            <li>Ensure all content is factually accurate and well-researched.</li>
             <li>
-              Ensure your article is factually accurate and well-researched.
-            </li>
-            <li>
-              Respect community standards—no hate speech, harassment, or
+              Maintain a respectful tone — no hate speech, harassment, or
               offensive language.
             </li>
+            <li>Use correct grammar, structure, and citations where needed.</li>
             <li>
-              Use proper grammar, structure, and citations where applicable.
-            </li>
-            <li>
-              Only use images or media you have rights to or that are
-              royalty-free.
+              Include only media that you own or that is licensed for free use.
             </li>
           </ul>
         </div>
@@ -63,10 +58,10 @@ const JoinAsContributor = () => {
             3. Content Rights
           </h2>
           <p>
-            You retain full ownership of your articles. However, by submitting
-            content to Knowvia, you grant us the non-exclusive right to publish,
-            edit, and distribute your content on our platform and promotional
-            materials, with full credit given.
+            You retain full ownership of your articles. By submitting content to
+            Knowvia, you grant us a non-exclusive right to publish, edit, and
+            distribute it on our platform and promotional channels, with full
+            credit given to you.
           </p>
         </div>
 
@@ -75,9 +70,9 @@ const JoinAsContributor = () => {
             4. Review & Moderation
           </h2>
           <p>
-            All submissions are subject to review by our editorial team. We
-            reserve the right to approve, edit, or reject content that doesn’t
-            align with our standards or values.
+            All submissions are reviewed by our editorial team. We reserve the
+            right to approve, edit, or reject any content that does not meet our
+            quality standards or align with our values.
           </p>
         </div>
 
@@ -86,8 +81,8 @@ const JoinAsContributor = () => {
             5. Termination
           </h2>
           <p>
-            We may revoke contributor privileges at any time for violations of
-            the guidelines, misuse of the platform, or unethical behavior.
+            Contributor privileges may be revoked at any time in cases of
+            guideline violations, platform misuse, or unethical behavior.
           </p>
         </div>
 
@@ -96,16 +91,17 @@ const JoinAsContributor = () => {
             6. Final Notes
           </h2>
           <p>
-            Our goal is to empower contributors to share meaningful content and
-            grow their personal brand. If you have questions, feel free to
-            contact us.
+            Our mission is to empower contributors to share valuable insights
+            and grow their personal brand. If you have questions or need
+            clarification, please reach out to our team.
           </p>
         </div>
       </section>
 
-      {/* <div className="mt-10 text-center">
+      {/* contributor register page navigation here */}
+      {/* <div className="mt-10">
         <Link
-          to="/contributor-registration"
+          to="/join-as-contributor"
           className="btn btn-secondary btn-wide hover:bg-blue-600 text-white"
         >
           Apply to Become a Contributor
