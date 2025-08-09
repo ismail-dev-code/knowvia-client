@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import axios from "axios";
 import { AuthContext } from "../context/authContext/AuthContext";
 import Loading from "../pages/Shared/Loading";
@@ -16,9 +16,18 @@ const SingleArticle = () => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
 
+  const location = useLocation();
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
+    if (location.hash === "#comments") {
+      const el = document.getElementById("comments");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.hash]);
 
   useEffect(() => {
     axios
